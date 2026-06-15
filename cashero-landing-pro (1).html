@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cashero AI — Smart Expense Tracking for Freelancers</title>
+<meta name="description" content="Cashero AI tracks every dollar you spend, spots the leaks, and delivers brutally honest financial analysis. Built for freelancers and small businesses."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#07080d;--bg2:#0d0e17;--bg3:#13141f;--bg4:#191a28;
+  --mint:#00d4c8;--mint-dim:rgba(0,212,200,.12);--mint-line:rgba(0,212,200,.2);
+  --amber:#f5a623;--red:#ff6b6b;--purple:#a78bfa;--blue:#60a5fa;
+  --green:#34d399;--orange:#f97316;--pink:#f472b6;
+  --text:#eceaff;--text2:#8b899e;--text3:#3f3d52;
+  --border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.04);
+  --r:14px;--r-sm:8px;
+}
+
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+.display{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;letter-spacing:-.04em;line-height:.97}
+.heading{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;letter-spacing:-.03em;line-height:1.1}
+
+.container{max-width:1120px;margin:0 auto;padding:0 32px}
+@media(max-width:700px){.container{padding:0 20px}}
+
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mint);background:var(--mint-dim);border:1px solid var(--mint-line);border-radius:100px;padding:5px 14px}
+.tag-dot{width:5px;height:5px;background:var(--mint);border-radius:50%;animation:blink 2s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:14px;padding:13px 28px;border-radius:10px;text-decoration:none;cursor:pointer;border:none;transition:all .2s;white-space:nowrap}
+.btn-primary{background:var(--mint);color:#07080d}
+.btn-primary:hover{background:#00bfb4;box-shadow:0 0 0 4px rgba(0,212,200,.18);transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border)}
+.btn-outline:hover{background:var(--bg3);border-color:rgba(255,255,255,.14)}
+.btn-sm{font-size:13px;padding:10px 22px}
+
+/* ── NAV ── */
+#nav{position:fixed;top:0;left:0;right:0;z-index:200;border-bottom:1px solid transparent;transition:border-color .3s,background .3s}
+#nav.scrolled{background:rgba(7,8,13,.88);backdrop-filter:blur(20px);border-bottom-color:var(--border)}
+.nav-inner{max-width:1120px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:20px;color:var(--text);letter-spacing:-.04em;text-decoration:none}
+.logo span{color:var(--mint)}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-links a{font-size:13px;font-weight:500;color:var(--text2);text-decoration:none;padding:6px 14px;border-radius:7px;transition:color .2s,background .2s}
+.nav-links a:hover{color:var(--text);background:var(--bg3)}
+.nav-right{display:flex;align-items:center;gap:10px}
+
+/* hamburger */
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;background:none;border:1px solid var(--border);border-radius:8px;cursor:pointer;padding:8px;flex-shrink:0}
+.nav-hamburger span{display:block;height:1.5px;background:var(--text2);border-radius:2px;transition:all .25s}
+.nav-hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* mobile drawer */
+.nav-drawer{
+  display:none;
+  position:fixed;top:64px;left:0;right:0;z-index:199;
+  background:rgba(7,8,13,.97);backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+  padding:16px 20px 24px;
+  flex-direction:column;gap:4px;
+  transform:translateY(-8px);opacity:0;
+  transition:transform .25s,opacity .25s;
+  pointer-events:none;
+}
+.nav-drawer.open{transform:translateY(0);opacity:1;pointer-events:all}
+.nav-drawer a{font-size:15px;font-weight:500;color:var(--text2);text-decoration:none;padding:12px 8px;border-radius:8px;transition:color .2s,background .2s}
+.nav-drawer a:hover{color:var(--text);background:var(--bg3)}
+.nav-drawer .drawer-cta{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+.nav-drawer .btn{width:100%;justify-content:center}
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  .nav-right .btn-outline{display:none}
+  .nav-hamburger{display:flex}
+  .nav-drawer{display:flex}
+}
+@media(max-width:700px){.nav-inner{padding:0 20px}}
+
+/* ── HERO ── */
+#hero{padding:152px 0 100px;position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(0,212,200,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,200,.03) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 90% 80% at 50% 0%,black 20%,transparent 90%)}
+.glow-top{position:absolute;width:900px;height:600px;top:-200px;left:50%;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(0,212,200,.07) 0%,transparent 65%);pointer-events:none}
+.glow-left{position:absolute;width:400px;height:400px;top:30%;left:-100px;background:radial-gradient(circle,rgba(96,165,250,.05) 0%,transparent 70%);pointer-events:none}
+.glow-right{position:absolute;width:400px;height:400px;top:20%;right:-100px;background:radial-gradient(circle,rgba(167,139,250,.05) 0%,transparent 70%);pointer-events:none}
+
+.hero-content{position:relative;z-index:2;text-align:center}
+.hero-title{font-size:clamp(48px,8vw,96px);max-width:900px;margin:24px auto 0}
+.hero-title .line2{background:linear-gradient(135deg,var(--mint) 0%,#60a5fa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:clamp(15px,2vw,18px);color:var(--text2);line-height:1.7;max-width:520px;margin:24px auto 40px;font-weight:300}
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+.hero-cta-note{font-size:12px;color:var(--text3);margin-bottom:56px}
+
+.social-proof{display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap;padding-top:16px;border-top:1px solid var(--border);max-width:560px;margin:0 auto}
+.sp-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text2)}
+.sp-icon{font-size:14px}
+
+/* ── APP PREVIEW ── */
+.app-preview{position:relative;z-index:2;max-width:880px;margin:80px auto 0}
+.app-frame{background:var(--bg2);border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:0 0 0 1px rgba(0,212,200,.06),0 40px 120px rgba(0,0,0,.7),0 0 80px rgba(0,212,200,.04)}
+.app-bar{background:var(--bg3);border-bottom:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;gap:8px}
+.app-dot{width:10px;height:10px;border-radius:50%}
+.app-url{flex:1;text-align:center;font-size:11px;color:var(--text3);background:var(--bg4);border-radius:6px;padding:5px 12px;max-width:300px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:6px}
+.app-url-dot{width:5px;height:5px;background:var(--green);border-radius:50%;animation:blink 2.5s ease infinite}
+.app-body{padding:24px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:600px){.app-body{grid-template-columns:1fr 1fr;padding:16px;gap:8px}}
+.app-stat{background:var(--bg3);border:1px solid var(--border2);border-radius:12px;padding:16px}
+.app-stat-label{font-size:10px;color:var(--text2);font-weight:500;letter-spacing:.04em;margin-bottom:6px}
+.app-stat-val{font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:700;letter-spacing:-.03em}
+.app-stat-sub{font-size:11px;color:var(--text2);margin-top:3px}
+.app-cat-row{grid-column:1/-1;display:flex;flex-direction:column;gap:6px}
+.app-cat{display:flex;align-items:center;gap:10px;background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:10px 14px}
+.app-cat-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.app-cat-name{flex:1;font-size:12px;font-weight:500}
+.app-cat-bar-wrap{flex:2;height:4px;background:var(--bg4);border-radius:2px;overflow:hidden}
+.app-cat-bar{height:100%;border-radius:2px;transition:width 1.5s ease}
+.app-cat-amt{font-size:12px;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif;min-width:52px;text-align:right}
+.app-ai{grid-column:1/-1;background:linear-gradient(135deg,rgba(0,212,200,.06),rgba(96,165,250,.04));border:1px solid var(--mint-line);border-radius:12px;padding:16px;display:flex;gap:12px;align-items:flex-start}
+.app-ai-badge{font-size:10px;font-weight:700;color:#07080d;background:var(--mint);padding:3px 8px;border-radius:4px;letter-spacing:.04em;flex-shrink:0;margin-top:1px}
+.app-ai-text{font-size:12px;color:var(--text2);line-height:1.6}
+.app-ai-text strong{color:var(--text);font-weight:500}
+/* typing cursor on the ai text */
+.app-ai-cursor{display:inline-block;width:2px;height:12px;background:var(--mint);margin-left:2px;vertical-align:middle;animation:cur .9s step-end infinite}
+@keyframes cur{0%,100%{opacity:1}50%{opacity:0}}
+
+/* ── TICKER ── */
+.ticker-wrap{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;padding:14px 0}
+.ticker-track{display:flex;animation:ticker 32s linear infinite;width:max-content}
+.ticker-track:hover{animation-play-state:paused}
+.ticker-item{display:flex;align-items:center;gap:12px;padding:0 36px;border-right:1px solid var(--border);font-size:12px;color:var(--text2);white-space:nowrap;font-weight:500}
+.ticker-item .ic{color:var(--mint);font-size:14px}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ── FEATURES ── */
+#features{padding:120px 0}
+
+/* section divider */
+.section-divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin-bottom:120px}
+
+.section-header{margin-bottom:64px}
+.section-header .tag{margin-bottom:20px}
+.section-title{font-size:clamp(30px,4vw,48px);max-width:540px}
+.section-sub{font-size:15px;color:var(--text2);line-height:1.7;max-width:460px;margin-top:14px;font-weight:300}
+
+.features-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+.fc{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:32px;position:relative;overflow:hidden;transition:border-color .3s,transform .3s,box-shadow .3s}
+.fc::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(0,212,200,.05),transparent);opacity:0;transition:opacity .4s;pointer-events:none}
+.fc:hover{border-color:rgba(0,212,200,.18);transform:translateY(-3px);box-shadow:0 20px 60px rgba(0,0,0,.4),0 0 0 1px rgba(0,212,200,.05)}
+.fc:hover::after{opacity:1}
+.fc-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:20px;flex-shrink:0}
+.fc-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:17px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+.fc-desc{font-size:13px;color:var(--text2);line-height:1.75}
+
+/* grid spans */
+.fc-span-5{grid-column:span 5}
+.fc-span-7{grid-column:span 7}
+.fc-span-6{grid-column:span 6}
+.fc-span-12{grid-column:span 12}
+@media(max-width:1000px){.fc-span-5{grid-column:span 12}.fc-span-7{grid-column:span 12}}
+@media(max-width:640px){.fc-span-6,.fc-span-12{grid-column:span 12}}
+
+/* AI verdict */
+.verdict{margin-top:20px;background:var(--bg3);border-radius:10px;padding:14px 16px;border-left:3px solid var(--amber)}
+.verdict-eye{font-size:10px;color:var(--amber);font-weight:600;letter-spacing:.07em;margin-bottom:8px}
+.verdict-body{font-size:13px;color:var(--text2);line-height:1.65;font-style:italic}
+.verdict-pills{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.vpill{font-size:10px;font-weight:500;padding:3px 10px;border-radius:100px;background:rgba(245,166,35,.1);color:var(--amber);border:1px solid rgba(245,166,35,.2)}
+
+/* expense list */
+.exp-list{margin-top:20px;display:flex;flex-direction:column;gap:7px}
+.exp-row{display:flex;align-items:center;justify-content:space-between;background:var(--bg3);border-radius:8px;padding:10px 13px;font-size:12px;opacity:0;transform:translateX(-10px);transition:opacity .4s,transform .4s}
+.exp-row.in{opacity:1;transform:translateX(0)}
+.exp-left{display:flex;align-items:center;gap:9px}
+.exp-dot{width:7px;height:7px;border-radius:50%}
+.exp-note{font-weight:500}
+.exp-cat{color:var(--text2);font-size:11px}
+.exp-amt{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:13px}
+
+/* voice */
+.voice-box{margin-top:20px;background:rgba(0,212,200,.05);border:1px solid var(--mint-line);border-radius:10px;padding:13px 16px;display:flex;align-items:center;gap:12px;font-size:12px;color:var(--mint)}
+.waves{display:flex;align-items:center;gap:2px;height:18px;flex-shrink:0}
+.wave{width:3px;background:var(--mint);border-radius:2px;animation:wav .7s ease-in-out infinite}
+.wave:nth-child(1){height:4px;animation-delay:0s}.wave:nth-child(2){height:12px;animation-delay:.08s}.wave:nth-child(3){height:18px;animation-delay:.16s}.wave:nth-child(4){height:8px;animation-delay:.24s}.wave:nth-child(5){height:14px;animation-delay:.32s}.wave:nth-child(6){height:6px;animation-delay:.4s}
+@keyframes wav{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
+
+/* budget bars */
+.budget-demo{margin-top:20px}
+.budget-cats{display:flex;flex-direction:column;gap:10px}
+.bcat{display:grid;grid-template-columns:110px 1fr 52px;align-items:center;gap:10px}
+.bcat-name{font-size:11px;color:var(--text2);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bcat-track{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.bcat-fill{height:100%;border-radius:3px;transition:width 1.4s cubic-bezier(.22,1,.36,1)}
+.bcat-pct{font-size:11px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;text-align:right}
+
+/* health ring */
+.health-wrap{margin-top:24px;display:flex;align-items:center;gap:24px}
+.ring-container{position:relative;flex-shrink:0}
+.ring-container svg{transform:rotate(-90deg)}
+.ring-score{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring-num{font-family:'Plus Jakarta Sans',sans-serif;font-size:26px;font-weight:800;color:var(--mint);letter-spacing:-.04em}
+.ring-lbl{font-size:9px;color:var(--text2);letter-spacing:.08em;margin-top:-2px}
+.ring-stats{display:flex;flex-direction:column;gap:8px}
+.rstat{font-size:12px;color:var(--text2)}
+.rstat strong{color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-weight:600}
+
+/* goals */
+.goals-list{margin-top:20px;display:flex;flex-direction:column;gap:10px}
+.goal-item{background:var(--bg3);border-radius:10px;padding:13px 15px}
+.goal-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.goal-name{font-size:12px;font-weight:600}
+.goal-pct{font-size:11px;color:var(--text2)}
+.goal-bar{height:5px;background:var(--bg4);border-radius:3px;overflow:hidden}
+.goal-fill{height:100%;border-radius:3px;transition:width 1.6s cubic-bezier(.22,1,.36,1)}
+.goal-row2{display:flex;justify-content:space-between;margin-top:6px}
+.goal-saved{font-size:11px;color:var(--text2)}
+.goal-target{font-size:11px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600}
+
+/* recurring */
+.recur-list{margin-top:18px;display:flex;flex-direction:column;gap:8px}
+.recur-row{display:flex;align-items:center;justify-content:space-between;background:var(--bg3);border-radius:8px;padding:10px 13px}
+.recur-left{display:flex;align-items:center;gap:9px}
+.recur-name{font-size:12px;font-weight:500}
+.recur-freq{font-size:10px;color:var(--text2)}
+.recur-amt{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:12px}
+
+/* weekly checkin feature card */
+.checkin-preview{margin-top:20px;background:var(--bg3);border-radius:10px;overflow:hidden}
+.checkin-header{display:flex;align-items:center;gap:10px;padding:12px 15px;border-bottom:1px solid var(--border2)}
+.checkin-week{font-size:10px;font-weight:600;color:var(--mint);letter-spacing:.06em}
+.checkin-body{padding:14px 15px;font-size:12px;color:var(--text2);line-height:1.7}
+.checkin-body strong{color:var(--text);font-weight:500}
+.checkin-footer{display:flex;gap:6px;padding:10px 15px;border-top:1px solid var(--border2);flex-wrap:wrap}
+.ck-pill{font-size:10px;font-weight:500;padding:3px 9px;border-radius:100px;background:rgba(0,212,200,.08);color:var(--mint);border:1px solid var(--mint-line)}
+
+/* ── HOW IT WORKS ── */
+#how{padding:120px 0;background:linear-gradient(to bottom,var(--bg) 0%,var(--bg2) 30%,var(--bg2) 70%,var(--bg) 100%)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:64px;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+@media(max-width:700px){.steps{grid-template-columns:1fr}}
+.step{background:var(--bg2);padding:40px 32px;position:relative;transition:background .3s}
+.step:hover{background:var(--bg3)}
+.step-num{font-family:'Plus Jakarta Sans',sans-serif;font-size:48px;font-weight:800;color:var(--text3);letter-spacing:-.05em;margin-bottom:20px;line-height:1}
+.step-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:17px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+.step-desc{font-size:13px;color:var(--text2);line-height:1.7}
+.step-accent{color:var(--mint)}
+
+/* payout explainer */
+.payout-note{margin-top:20px;display:flex;align-items:flex-start;gap:10px;background:rgba(0,212,200,.05);border:1px solid var(--mint-line);border-radius:8px;padding:12px 14px}
+.payout-note-icon{font-size:14px;flex-shrink:0;margin-top:1px}
+.payout-note-text{font-size:12px;color:var(--text2);line-height:1.6}
+.payout-note-text strong{color:var(--mint);font-weight:500}
+
+/* ── SECURITY ── */
+#security{padding:80px 0}
+.security-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:48px}
+@media(max-width:700px){.security-grid{grid-template-columns:1fr}}
+.sec-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:28px}
+.sec-icon{font-size:24px;margin-bottom:14px}
+.sec-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;letter-spacing:-.02em;margin-bottom:8px}
+.sec-desc{font-size:13px;color:var(--text2);line-height:1.65}
+
+/* ── GLOBAL ── */
+#global{padding:80px 0;border-top:1px solid var(--border)}
+.global-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+@media(max-width:800px){.global-inner{grid-template-columns:1fr;gap:40px}}
+.global-currencies{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media(max-width:500px){.global-currencies{grid-template-columns:repeat(3,1fr)}}
+.cur-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center;transition:border-color .25s,transform .25s}
+.cur-card:hover{border-color:var(--mint-line);transform:translateY(-2px)}
+.cur-symbol{font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:800;color:var(--mint);letter-spacing:-.03em}
+.cur-name{font-size:10px;color:var(--text2);margin-top:3px;font-weight:500}
+
+/* ── STATS ── */
+#stats{padding:80px 0;border-top:1px solid var(--border)}
+.stats-belt{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+@media(max-width:700px){.stats-belt{grid-template-columns:repeat(2,1fr)}}
+.stat-cell{padding:40px 32px;background:var(--bg2);border-right:1px solid var(--border);transition:background .3s}
+.stat-cell:last-child{border-right:none}
+.stat-cell:hover{background:var(--bg3)}
+.stat-val{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(30px,4vw,46px);font-weight:800;letter-spacing:-.05em;background:linear-gradient(135deg,var(--mint),#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-label{font-size:13px;color:var(--text2);margin-top:8px;line-height:1.5}
+
+/* ── FAQ ── */
+#faq{padding:100px 0;border-top:1px solid var(--border)}
+.faq-inner{display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start}
+@media(max-width:800px){.faq-inner{grid-template-columns:1fr;gap:40px}}
+.faq-list{display:flex;flex-direction:column;gap:2px}
+.faq-item{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--bg2)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;cursor:pointer;font-size:14px;font-weight:500;transition:background .2s;user-select:none;gap:12px}
+.faq-q:hover{background:var(--bg3)}
+.faq-chevron{flex-shrink:0;transition:transform .25s;color:var(--text2)}
+.faq-item.open .faq-chevron{transform:rotate(180deg)}
+.faq-a{font-size:13px;color:var(--text2);line-height:1.7;padding:0 22px;max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.22,1,.36,1),padding .3s}
+.faq-item.open .faq-a{max-height:200px;padding:0 22px 18px}
+
+/* ── CTA ── */
+#cta{padding:120px 0;text-align:center;position:relative;overflow:hidden}
+.cta-glow{position:absolute;width:800px;height:500px;top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(ellipse,rgba(0,212,200,.08) 0%,transparent 65%);pointer-events:none}
+.cta-title{font-size:clamp(36px,5.5vw,66px);max-width:700px;margin:24px auto 20px}
+.cta-sub{font-size:16px;color:var(--text2);font-weight:300;max-width:420px;margin:0 auto 40px}
+.cta-note{margin-top:20px;font-size:12px;color:var(--text3)}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:40px 0}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.footer-links{display:flex;gap:24px;flex-wrap:wrap}
+.footer-links a{font-size:12px;color:var(--text2);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--text)}
+.footer-copy{font-size:12px;color:var(--text3)}
+
+/* ── SCROLL REVEAL ── */
+.sr{opacity:0;transform:translateY(20px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1)}
+.sr.up{opacity:1;transform:translateY(0)}
+.sr-delay-1{transition-delay:.08s}.sr-delay-2{transition-delay:.16s}.sr-delay-3{transition-delay:.24s}.sr-delay-4{transition-delay:.32s}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="logo">casher<span>o</span> ai</a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#global">Global</a>
+      <a href="#security">Security</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="nav-right">
+      <a href="https://cashero-ai.vercel.app" class="btn btn-primary btn-sm">Open app — it's free</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<nav class="nav-drawer" id="drawer">
+  <a href="#features" class="drawer-link">Features</a>
+  <a href="#how" class="drawer-link">How it works</a>
+  <a href="#global" class="drawer-link">Global</a>
+  <a href="#security" class="drawer-link">Security</a>
+  <a href="#faq" class="drawer-link">FAQ</a>
+  <div class="drawer-cta">
+    <a href="https://cashero-ai.vercel.app" class="btn btn-primary">Open app — it's free</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="glow-top"></div>
+  <div class="glow-left"></div>
+  <div class="glow-right"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="tag sr"><span class="tag-dot"></span>AI-powered · Free to use · No signup</div>
+      <h1 class="display hero-title sr sr-delay-1">
+        Your money,<br><span class="line2">finally honest.</span>
+      </h1>
+      <p class="hero-sub sr sr-delay-2">
+        Cashero AI tracks your expenses, spots overspending before it hurts, and delivers the kind of financial analysis your bank will never give you.
+      </p>
+      <div class="hero-actions sr sr-delay-3">
+        <a href="https://cashero-ai.vercel.app" class="btn btn-primary">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Open the app — it's free
+        </a>
+        <a href="#features" class="btn btn-outline">See all features</a>
+      </div>
+      <div class="hero-cta-note sr sr-delay-3">No account. No credit card. Works instantly in your browser.</div>
+      <div class="social-proof sr sr-delay-4">
+        <div class="sp-item"><span class="sp-icon">🔒</span> Data stays on your device</div>
+        <div class="sp-item"><span class="sp-icon">📵</span> Works offline</div>
+        <div class="sp-item"><span class="sp-icon">🌍</span> 11 currencies</div>
+        <div class="sp-item"><span class="sp-icon">⚡</span> AI analysis in seconds</div>
+      </div>
+    </div>
+    <div class="app-preview sr">
+      <div class="app-frame">
+        <div class="app-bar">
+          <div class="app-dot" style="background:#ff5f57"></div>
+          <div class="app-dot" style="background:#febc2e"></div>
+          <div class="app-dot" style="background:#28c840"></div>
+          <div class="app-url"><span class="app-url-dot"></span>cashero-ai.vercel.app</div>
+        </div>
+        <div class="app-body">
+          <div class="app-stat">
+            <div class="app-stat-label">PAYOUT</div>
+            <div class="app-stat-val" style="color:var(--blue)">$4,000</div>
+            <div class="app-stat-sub">This month's income</div>
+          </div>
+          <div class="app-stat">
+            <div class="app-stat-label">SPENT</div>
+            <div class="app-stat-val" style="color:var(--red)">$2,847</div>
+            <div class="app-stat-sub">71.2% of income</div>
+          </div>
+          <div class="app-stat">
+            <div class="app-stat-label">SAVED</div>
+            <div class="app-stat-val" style="color:var(--mint)">$1,153</div>
+            <div class="app-stat-sub">28.8% rate · on track</div>
+          </div>
+          <div class="app-cat-row">
+            <div class="app-cat">
+              <div class="app-cat-dot" style="background:#ff6b6b"></div>
+              <div class="app-cat-name">Food & Dining</div>
+              <div class="app-cat-bar-wrap"><div class="app-cat-bar" style="width:0%;background:#ff6b6b" data-w="80"></div></div>
+              <div class="app-cat-amt" style="color:#ff6b6b">$640</div>
+            </div>
+            <div class="app-cat">
+              <div class="app-cat-dot" style="background:#60a5fa"></div>
+              <div class="app-cat-name">Software & Tools</div>
+              <div class="app-cat-bar-wrap"><div class="app-cat-bar" style="width:0%;background:#60a5fa" data-w="55"></div></div>
+              <div class="app-cat-amt" style="color:#60a5fa">$440</div>
+            </div>
+            <div class="app-cat">
+              <div class="app-cat-dot" style="background:#00d4c8"></div>
+              <div class="app-cat-name">Transport</div>
+              <div class="app-cat-bar-wrap"><div class="app-cat-bar" style="width:0%;background:#00d4c8" data-w="38"></div></div>
+              <div class="app-cat-amt" style="color:#00d4c8">$305</div>
+            </div>
+          </div>
+          <div class="app-ai">
+            <div class="app-ai-badge">AI</div>
+            <div class="app-ai-text" id="ai-typetext">
+              <strong>Verdict:</strong> You're allocating 16% of income to software tools. That $440 includes 3 tools you haven't opened this month — cut them and pocket <strong>$87/mo</strong>.<span class="app-ai-cursor"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <div class="ticker-item"><span class="ic">⚡</span> Instant AI Parsing</div>
+    <div class="ticker-item"><span class="ic">🎯</span> Budget Alerts at 80% & 100%</div>
+    <div class="ticker-item"><span class="ic">🧠</span> Monthly AI Analysis</div>
+    <div class="ticker-item"><span class="ic">↺</span> Recurring Expense Tracker</div>
+    <div class="ticker-item"><span class="ic">🏆</span> Savings Goals</div>
+    <div class="ticker-item"><span class="ic">📊</span> Financial Health Score</div>
+    <div class="ticker-item"><span class="ic">📤</span> CSV Export</div>
+    <div class="ticker-item"><span class="ic">🔒</span> PIN Lock & Recovery</div>
+    <div class="ticker-item"><span class="ic">🌍</span> 11 Global Currencies</div>
+    <div class="ticker-item"><span class="ic">📵</span> Offline-ready PWA</div>
+    <div class="ticker-item"><span class="ic">📋</span> Weekly Check-ins</div>
+    <div class="ticker-item"><span class="ic">🌙</span> Dark & Light Mode</div>
+    <div class="ticker-item"><span class="ic">⚡</span> Instant AI Parsing</div>
+    <div class="ticker-item"><span class="ic">🎯</span> Budget Alerts at 80% & 100%</div>
+    <div class="ticker-item"><span class="ic">🧠</span> Monthly AI Analysis</div>
+    <div class="ticker-item"><span class="ic">↺</span> Recurring Expense Tracker</div>
+    <div class="ticker-item"><span class="ic">🏆</span> Savings Goals</div>
+    <div class="ticker-item"><span class="ic">📊</span> Financial Health Score</div>
+    <div class="ticker-item"><span class="ic">📤</span> CSV Export</div>
+    <div class="ticker-item"><span class="ic">🔒</span> PIN Lock & Recovery</div>
+    <div class="ticker-item"><span class="ic">🌍</span> 11 Global Currencies</div>
+    <div class="ticker-item"><span class="ic">📵</span> Offline-ready PWA</div>
+    <div class="ticker-item"><span class="ic">📋</span> Weekly Check-ins</div>
+    <div class="ticker-item"><span class="ic">🌙</span> Dark & Light Mode</div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="container">
+    <div class="section-header sr">
+      <div class="tag">Features</div>
+      <h2 class="heading section-title">Everything a freelancer needs to stay in control</h2>
+      <p class="section-sub">No accounting degree. No bloated dashboards. Just the tools that keep your money visible and your stress low.</p>
+    </div>
+    <div class="features-grid">
+
+      <!-- AI verdict -->
+      <div class="fc fc-span-5 sr">
+        <div class="fc-icon" style="background:rgba(245,166,35,.1)">🧠</div>
+        <div class="fc-title">AI that doesn't sugarcoat</div>
+        <div class="fc-desc">Every month, Cashero reads your full spending history and delivers a verdict — brutally honest, region-aware, and specific to your categories.</div>
+        <div class="verdict">
+          <div class="verdict-eye">THIS MONTH'S VERDICT</div>
+          <div class="verdict-body">"You spent 32% of your income on food. Either you eat like a Michelin judge or you're stress-eating your savings. Either way, it ends now."</div>
+          <div class="verdict-pills">
+            <div class="vpill">Cut Food 20%</div>
+            <div class="vpill">Cancel 2 subs</div>
+            <div class="vpill">Save $340 more</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Log expenses -->
+      <div class="fc fc-span-7 sr sr-delay-1">
+        <div class="fc-icon" style="background:rgba(0,212,200,.1)">⚡</div>
+        <div class="fc-title">Log expenses in seconds</div>
+        <div class="fc-desc">Type naturally or speak it. "Lunch $24 Nandos" — Cashero picks the category, amount, and date automatically. No menus to tap through.</div>
+        <div class="exp-list" id="exp-list">
+          <div class="exp-row" style="transition-delay:.05s">
+            <div class="exp-left"><div class="exp-dot" style="background:#ff6b6b"></div><div><div class="exp-note">Nandos lunch</div><div class="exp-cat">Food & Dining</div></div></div>
+            <div class="exp-amt">$24.00</div>
+          </div>
+          <div class="exp-row" style="transition-delay:.15s">
+            <div class="exp-left"><div class="exp-dot" style="background:#60a5fa"></div><div><div class="exp-note">GitHub Pro</div><div class="exp-cat">Software & Tools</div></div></div>
+            <div class="exp-amt">$4.00</div>
+          </div>
+          <div class="exp-row" style="transition-delay:.25s">
+            <div class="exp-left"><div class="exp-dot" style="background:#00d4c8"></div><div><div class="exp-note">Uber to client</div><div class="exp-cat">Transport</div></div></div>
+            <div class="exp-amt">$9.50</div>
+          </div>
+          <div class="exp-row" style="transition-delay:.35s">
+            <div class="exp-left"><div class="exp-dot" style="background:#a78bfa"></div><div><div class="exp-note">Spotify Premium</div><div class="exp-cat">Entertainment</div></div></div>
+            <div class="exp-amt">$11.99</div>
+          </div>
+        </div>
+        <div class="voice-box">
+          <div class="waves"><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div></div>
+          "Add $49 software expense for Figma Pro"
+        </div>
+      </div>
+
+      <!-- Budget alerts -->
+      <div class="fc fc-span-7 sr">
+        <div class="fc-icon" style="background:rgba(245,166,35,.1)">🎯</div>
+        <div class="fc-title">Budgets that warn you before it's too late</div>
+        <div class="fc-desc">Set spending limits per category. Get notified at 80% and 100%. End-of-month projections show if you're heading for trouble before you get there.</div>
+        <div class="budget-demo">
+          <div class="budget-cats" id="bcats">
+            <div class="bcat"><div class="bcat-name">Food & Dining</div><div class="bcat-track"><div class="bcat-fill" style="width:0%;background:#ff6b6b" data-w="84"></div></div><div class="bcat-pct" style="color:#ff6b6b">84%</div></div>
+            <div class="bcat"><div class="bcat-name">Software & Tools</div><div class="bcat-track"><div class="bcat-fill" style="width:0%;background:#60a5fa" data-w="55"></div></div><div class="bcat-pct" style="color:#60a5fa">55%</div></div>
+            <div class="bcat"><div class="bcat-name">Transport</div><div class="bcat-track"><div class="bcat-fill" style="width:0%;background:#00d4c8" data-w="38"></div></div><div class="bcat-pct" style="color:#00d4c8">38%</div></div>
+            <div class="bcat"><div class="bcat-name">Health</div><div class="bcat-track"><div class="bcat-fill" style="width:0%;background:#fbbf24" data-w="22"></div></div><div class="bcat-pct" style="color:#fbbf24">22%</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Health score -->
+      <div class="fc fc-span-5 sr sr-delay-1">
+        <div class="fc-icon" style="background:rgba(96,165,250,.1)">📊</div>
+        <div class="fc-title">Financial health score</div>
+        <div class="fc-desc">A live score from your savings rate, budget adherence, and category balance. One number that tells the full story.</div>
+        <div class="health-wrap">
+          <div class="ring-container">
+            <svg width="110" height="110" viewBox="0 0 110 110">
+              <circle cx="55" cy="55" r="44" fill="none" stroke="var(--bg3)" stroke-width="9"/>
+              <circle id="ring-arc" cx="55" cy="55" r="44" fill="none" stroke="url(#rg)" stroke-width="9" stroke-dasharray="276.5" stroke-dashoffset="276.5" stroke-linecap="round"/>
+              <defs><linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00d4c8"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs>
+            </svg>
+            <div class="ring-score"><div class="ring-num" id="ring-num">0</div><div class="ring-lbl">SCORE</div></div>
+          </div>
+          <div class="ring-stats">
+            <div class="rstat">Savings rate <strong style="color:var(--mint)">28%</strong></div>
+            <div class="rstat">Budget use <strong style="color:var(--amber)">78%</strong></div>
+            <div class="rstat">Biggest risk <strong style="color:var(--red)">Food</strong></div>
+            <div class="rstat">Trend <strong>Stable ↗</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Savings goals -->
+      <div class="fc fc-span-6 sr">
+        <div class="fc-icon" style="background:rgba(52,211,153,.1)">🏆</div>
+        <div class="fc-title">Savings goals you can actually track</div>
+        <div class="fc-desc">Set a target, log your progress, watch the bar move. Deadlines keep you honest, and Cashero flags when you're falling behind.</div>
+        <div class="goals-list" id="goals-list">
+          <div class="goal-item">
+            <div class="goal-top"><div class="goal-name">Emergency fund</div><div class="goal-pct">68%</div></div>
+            <div class="goal-bar"><div class="goal-fill" style="width:0%;background:var(--green)" data-w="68"></div></div>
+            <div class="goal-row2"><div class="goal-saved">$3,400 saved</div><div class="goal-target">$5,000 goal</div></div>
+          </div>
+          <div class="goal-item">
+            <div class="goal-top"><div class="goal-name">New MacBook</div><div class="goal-pct">41%</div></div>
+            <div class="goal-bar"><div class="goal-fill" style="width:0%;background:var(--blue)" data-w="41"></div></div>
+            <div class="goal-row2"><div class="goal-saved">$820 saved</div><div class="goal-target">$2,000 goal</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recurring -->
+      <div class="fc fc-span-6 sr sr-delay-1">
+        <div class="fc-icon" style="background:rgba(244,114,182,.1)">↺</div>
+        <div class="fc-title">Stop forgetting what you're paying for</div>
+        <div class="fc-desc">Log subscriptions once. Cashero tracks them, reminds you before billing, and shows the annual total that's quietly bleeding you dry.</div>
+        <div class="recur-list">
+          <div class="recur-row"><div class="recur-left"><div class="exp-dot" style="background:#60a5fa"></div><div><div class="recur-name">Figma Pro</div><div class="recur-freq">monthly</div></div></div><div class="recur-amt" style="color:#60a5fa">$15/mo</div></div>
+          <div class="recur-row"><div class="recur-left"><div class="exp-dot" style="background:#a78bfa"></div><div><div class="recur-name">Notion</div><div class="recur-freq">monthly</div></div></div><div class="recur-amt" style="color:#a78bfa">$16/mo</div></div>
+          <div class="recur-row"><div class="recur-left"><div class="exp-dot" style="background:#f472b6"></div><div><div class="recur-name">Adobe CC</div><div class="recur-freq">monthly</div></div></div><div class="recur-amt" style="color:#f472b6">$55/mo</div></div>
+          <div class="recur-row" style="background:rgba(255,107,107,.06);border:1px solid rgba(255,107,107,.15);border-radius:8px"><div class="recur-left"><span style="font-size:11px;color:var(--text2)">Annual bleed:</span></div><div class="recur-amt" style="color:var(--red)">$1,032/yr</div></div>
+        </div>
+      </div>
+
+      <!-- Weekly check-in — new card -->
+      <div class="fc fc-span-12 sr">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center">
+          <div>
+            <div class="fc-icon" style="background:rgba(96,165,250,.1)">📋</div>
+            <div class="fc-title">Weekly check-ins that keep you honest</div>
+            <div class="fc-desc">Every week, Cashero generates a short summary of how your spending is tracking — category by category. You see it the moment you open the app, not at the end of the month when the damage is already done.</div>
+          </div>
+          <div class="checkin-preview">
+            <div class="checkin-header">
+              <span style="font-size:16px">📋</span>
+              <span class="checkin-week">WEEK 2 CHECK-IN · JUNE 2026</span>
+            </div>
+            <div class="checkin-body">
+              You're <strong>14 days into the month</strong> and already at 71% of your food budget. Software spending is steady at 55%. Transport is fine. <strong>At this pace, you'll overshoot food by $120</strong> before the month closes — cut 3 meals out or cook more this week.
+            </div>
+            <div class="checkin-footer">
+              <div class="ck-pill">Food at risk</div>
+              <div class="ck-pill">Software steady</div>
+              <div class="ck-pill">On pace to save $900</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTION DIVIDER -->
+<div class="container"><div class="section-divider"></div></div>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="container">
+    <div class="section-header sr" style="text-align:center;max-width:540px;margin-left:auto;margin-right:auto">
+      <div class="tag">How it works</div>
+      <h2 class="heading section-title" style="max-width:100%">Up and running in under a minute</h2>
+      <p class="section-sub" style="max-width:100%">No account setup. No onboarding wizard. Open the app and start logging.</p>
+    </div>
+    <div class="steps">
+      <div class="step sr">
+        <div class="step-num">01</div>
+        <div class="step-title">Set your monthly payout</div>
+        <div class="step-desc">Enter what you earned this month. Cashero uses it as the baseline for every percentage, projection, and health score — <span class="step-accent">without sending it anywhere.</span></div>
+        <div class="payout-note">
+          <div class="payout-note-icon">💡</div>
+          <div class="payout-note-text"><strong>What's a payout?</strong> It's your monthly income — whether that's a client invoice, a payslip, or a transfer. You enter it manually so Cashero can show what percentage of it you're spending.</div>
+        </div>
+      </div>
+      <div class="step sr sr-delay-1">
+        <div class="step-num">02</div>
+        <div class="step-title">Log expenses as they happen</div>
+        <div class="step-desc">Type naturally, use voice input, or paste from a receipt. The AI categorizes it instantly across 9 categories. Takes <span class="step-accent">under 5 seconds per entry.</span></div>
+      </div>
+      <div class="step sr sr-delay-2">
+        <div class="step-num">03</div>
+        <div class="step-title">Let AI show you what to cut</div>
+        <div class="step-desc">Run a full analysis any time. Cashero reads the whole month, identifies patterns, and gives you <span class="step-accent">specific cuts with targets</span> — not generic advice.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY -->
+<section id="security">
+  <div class="container">
+    <div class="section-header sr">
+      <div class="tag">Privacy & Security</div>
+      <h2 class="heading section-title">Your data never leaves your device</h2>
+      <p class="section-sub">No server. No database. No account. Everything lives in your browser — and you can lock it behind a PIN.</p>
+    </div>
+    <div class="security-grid">
+      <div class="sec-card sr">
+        <div class="sec-icon">💾</div>
+        <div class="sec-title">Local-only storage</div>
+        <div class="sec-desc">All expenses, budgets, and goals live in your browser's localStorage. No backend receives your financial data — ever. Clearing your browser data is the only way to delete it.</div>
+      </div>
+      <div class="sec-card sr sr-delay-1">
+        <div class="sec-icon">🔐</div>
+        <div class="sec-title">PIN lock with recovery phrase</div>
+        <div class="sec-desc">Enable a PIN to lock the app on your device. Your data is protected with a hashed key. If you forget the PIN, a recovery phrase lets you back in without losing anything.</div>
+      </div>
+      <div class="sec-card sr sr-delay-2">
+        <div class="sec-icon">📤</div>
+        <div class="sec-title">Export and own your data</div>
+        <div class="sec-desc">Export everything to CSV any time. No vendor lock-in, no subscription required to get your own history out. It's your data — take it wherever you want.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GLOBAL -->
+<section id="global">
+  <div class="container">
+    <div class="global-inner">
+      <div class="sr">
+        <div class="tag">Global</div>
+        <h2 class="heading section-title" style="margin-top:20px">Built for freelancers everywhere</h2>
+        <p class="section-sub">11 currencies with region-aware AI analysis. Cashero knows that a 30% food spend in Lagos hits differently than in London — and its advice reflects that.</p>
+        <a href="https://cashero-ai.vercel.app" class="btn btn-primary" style="margin-top:32px">Open the app</a>
+      </div>
+      <div class="global-currencies sr sr-delay-1">
+        <div class="cur-card"><div class="cur-symbol">$</div><div class="cur-name">USD</div></div>
+        <div class="cur-card"><div class="cur-symbol">€</div><div class="cur-name">EUR</div></div>
+        <div class="cur-card"><div class="cur-symbol">£</div><div class="cur-name">GBP</div></div>
+        <div class="cur-card"><div class="cur-symbol">₹</div><div class="cur-name">INR</div></div>
+        <div class="cur-card"><div class="cur-symbol">₦</div><div class="cur-name">NGN</div></div>
+        <div class="cur-card"><div class="cur-symbol">¥</div><div class="cur-name">JPY</div></div>
+        <div class="cur-card"><div class="cur-symbol">C$</div><div class="cur-name">CAD</div></div>
+        <div class="cur-card"><div class="cur-symbol">A$</div><div class="cur-name">AUD</div></div>
+        <div class="cur-card"><div class="cur-symbol">د.إ</div><div class="cur-name">AED</div></div>
+        <div class="cur-card"><div class="cur-symbol">CHF</div><div class="cur-name">CHF</div></div>
+        <div class="cur-card"><div class="cur-symbol">¥</div><div class="cur-name">CNY</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="container">
+    <div class="stats-belt sr">
+      <div class="stat-cell">
+        <div class="stat-val" id="s1">0</div>
+        <div class="stat-label">spending categories, covering every corner of a freelancer's life</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-val" id="s2">0</div>
+        <div class="stat-label">currencies — each with its own AI economic context</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-val" id="s3">0%</div>
+        <div class="stat-label">of your financial data leaves your device</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-val">&lt;5s</div>
+        <div class="stat-label">to log any expense with AI auto-categorization</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="faq-inner">
+      <div class="sr">
+        <div class="tag">FAQ</div>
+        <h2 class="heading section-title" style="margin-top:20px;max-width:280px">Questions you probably have</h2>
+      </div>
+      <div class="faq-list sr sr-delay-1">
+        <div class="faq-item">
+          <div class="faq-q">Do I need to create an account?
+            <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="faq-a">No. Cashero runs entirely in your browser with no account, no email, and no signup. Open the app and start immediately. Your data is saved locally on your device.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Is my financial data safe?
+            <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="faq-a">Yes. Everything is stored in your browser's localStorage — no server ever receives your expenses, budgets, or payouts. You can also enable a PIN lock with a recovery phrase for extra protection.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Does it work without internet?
+            <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="faq-a">Yes. Cashero is a Progressive Web App (PWA) and caches itself for offline use. You can log expenses, view your dashboard, and check budgets without a connection. AI analysis requires internet.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What is a "payout" in the app?
+            <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="faq-a">Your payout is your monthly income — a client payment, a salary transfer, or any money that came in. You enter it manually at the start of each month. Cashero uses it to calculate your savings rate, spending percentages, and health score.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What if I use it on multiple devices?
+            <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="faq-a">Since data is stored locally, each device has its own separate data. You can export a CSV from one device and use it as a reference on another. Cross-device sync is not currently available.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Is Cashero really free?
+            <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="faq-a">Yes, completely. There is no paid plan, no trial period, and no hidden upgrade wall. The AI analysis features are included at no cost.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-glow"></div>
+  <div class="container">
+    <div class="tag sr"><span class="tag-dot"></span>Free · No account · Works now</div>
+    <h2 class="display cta-title sr sr-delay-1">Stop guessing where<br>your money went.</h2>
+    <p class="cta-sub sr sr-delay-2">Open Cashero AI and start logging in 30 seconds. No signup, no credit card, no excuses.</p>
+    <a href="https://cashero-ai.vercel.app" class="btn btn-primary sr sr-delay-3" style="font-size:15px;padding:15px 36px">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Open Cashero AI free
+    </a>
+    <div class="cta-note sr sr-delay-4">Works in your browser. Offline-ready. Your data stays on your device.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <a href="#" class="logo" style="font-size:17px">casher<span>o</span> ai</a>
+      <div class="footer-links">
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#security">Privacy</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://cashero-ai.vercel.app">Open App</a>
+      </div>
+      <div class="footer-copy">© 2026 Cashero AI · Smart expense tracking for freelancers</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── NAV SCROLL ── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+}, {passive:true});
+
+/* ── MOBILE HAMBURGER ── */
+const hamburger = document.getElementById('hamburger');
+const drawer = document.getElementById('drawer');
+hamburger.addEventListener('click', () => {
+  const open = drawer.classList.toggle('open');
+  hamburger.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+drawer.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    drawer.classList.remove('open');
+    hamburger.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+/* ── SCROLL REVEAL ── */
+const srObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('up'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.sr').forEach(el => srObs.observe(el));
+
+/* ── APP PREVIEW BARS ── */
+const appObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.app-cat-bar').forEach(b => {
+        setTimeout(() => { b.style.width = b.dataset.w + '%'; }, 300);
+      });
+      appObs.disconnect();
+    }
+  });
+}, { threshold: 0.3 });
+const appFrame = document.querySelector('.app-frame');
+if (appFrame) appObs.observe(appFrame);
+
+/* ── EXPENSE LIST ANIMATE ── */
+const expObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.exp-row').forEach((row, i) => {
+        setTimeout(() => row.classList.add('in'), 100 + i * 120);
+      });
+      expObs.disconnect();
+    }
+  });
+}, { threshold: 0.3 });
+const expList = document.getElementById('exp-list');
+if (expList) expObs.observe(expList);
+
+/* ── BUDGET BARS ── */
+const bObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.bcat-fill').forEach((b, i) => {
+        setTimeout(() => { b.style.width = b.dataset.w + '%'; }, 200 + i * 100);
+      });
+      bObs.disconnect();
+    }
+  });
+}, { threshold: 0.3 });
+const bcats = document.getElementById('bcats');
+if (bcats) bObs.observe(bcats);
+
+/* ── HEALTH RING ── */
+const ringObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const arc = document.getElementById('ring-arc');
+      const num = document.getElementById('ring-num');
+      const score = 74;
+      const offset = 276.5 - (score / 100) * 276.5;
+      let n = 0; const step = score / 60;
+      const tick = () => { n = Math.min(n + step, score); num.textContent = Math.round(n); if (n < score) requestAnimationFrame(tick); };
+      setTimeout(() => { arc.style.transition = 'stroke-dashoffset 1.4s cubic-bezier(.22,1,.36,1)'; arc.style.strokeDashoffset = offset; tick(); }, 300);
+      ringObs.disconnect();
+    }
+  });
+}, { threshold: 0.4 });
+const ringArc = document.getElementById('ring-arc');
+if (ringArc) ringObs.observe(ringArc.closest('.fc'));
+
+/* ── GOALS BARS ── */
+const gObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.goal-fill').forEach((b, i) => {
+        setTimeout(() => { b.style.width = b.dataset.w + '%'; }, 300 + i * 150);
+      });
+      gObs.disconnect();
+    }
+  });
+}, { threshold: 0.3 });
+const goalsList = document.getElementById('goals-list');
+if (goalsList) gObs.observe(goalsList);
+
+/* ── STAT COUNTERS ── */
+function counter(el, target, suffix, dur) {
+  if (!el) return;
+  let v = 0; const step = target / (dur / 16);
+  const go = () => { v = Math.min(v + step, target); el.textContent = Math.round(v) + suffix; if (v < target) requestAnimationFrame(go); };
+  go();
+}
+const statsObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      counter(document.getElementById('s1'), 9, '', 800);
+      counter(document.getElementById('s2'), 11, '', 900);
+      counter(document.getElementById('s3'), 0, '%', 300);
+      statsObs.disconnect();
+    }
+  });
+}, { threshold: 0.5 });
+const statsEl = document.querySelector('.stats-belt');
+if (statsEl) statsObs.observe(statsEl);
+
+/* ── EXPENSE LIST CYCLING ── */
+const liveData = [
+  { note:'Morning coffee', cat:'Food & Dining', color:'#ff6b6b', amt:'$5.50' },
+  { note:'Adobe CC', cat:'Software & Tools', color:'#60a5fa', amt:'$54.99' },
+  { note:'Gym membership', cat:'Health', color:'#fbbf24', amt:'$30.00' },
+  { note:'Metro pass', cat:'Transport', color:'#00d4c8', amt:'$3.20' },
+  { note:'Udemy course', cat:'Education', color:'#34d399', amt:'$14.99' },
+  { note:'Amazon order', cat:'Shopping', color:'#f97316', amt:'$42.00' },
+];
+let liveIdx = 0;
+setInterval(() => {
+  const list = document.getElementById('exp-list');
+  if (!list) return;
+  const rows = list.querySelectorAll('.exp-row');
+  const first = rows[0];
+  if (!first || !first.classList.contains('in')) return;
+  first.classList.remove('in');
+  setTimeout(() => {
+    const d = liveData[liveIdx % liveData.length];
+    first.querySelector('.exp-dot').style.background = d.color;
+    first.querySelector('.exp-note').textContent = d.note;
+    first.querySelector('.exp-cat').textContent = d.cat;
+    first.querySelector('.exp-amt').textContent = d.amt;
+    list.appendChild(first);
+    setTimeout(() => { const last = list.querySelectorAll('.exp-row'); last[last.length-1].classList.add('in'); }, 60);
+    liveIdx++;
+  }, 380);
+}, 2800);
+
+/* ── FAQ ACCORDION ── */
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
