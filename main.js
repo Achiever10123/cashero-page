@@ -158,3 +158,36 @@ document.querySelectorAll('.faq-q').forEach(q => {
     if (!isOpen) item.classList.add('open');
   });
 });
+
+// ─── WAITLIST MODAL ───
+function openWaitlist() {
+  const overlay = document.getElementById('waitlist-overlay');
+  overlay.classList.add('active');
+  overlay.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => {
+    const input = document.getElementById('wl-email');
+    if (input) input.focus();
+  }, 250);
+}
+
+function closeWaitlist() {
+  const overlay = document.getElementById('waitlist-overlay');
+  overlay.classList.remove('active');
+  overlay.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+// Close on overlay click (outside modal)
+document.addEventListener('DOMContentLoaded', function () {
+  const overlay = document.getElementById('waitlist-overlay');
+  if (overlay) {
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeWaitlist();
+    });
+  }
+  // Close on Escape
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeWaitlist();
+  });
+});
