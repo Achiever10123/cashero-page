@@ -1,0 +1,25 @@
+{
+  "name": "Cashero AI",
+  "short_name": "Cashero",
+  "description": "Free AI expense tracker for freelancers. Local-first, offline-ready, brutally honest.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080810",
+  "theme_color": "#00d4c8",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["finance", "productivity"],
+  "icons": [
+    {
+      "src": "favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    }
+  ]
+}
