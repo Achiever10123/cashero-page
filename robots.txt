@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cashero-ai.vercel.app/sitemap.xml
+Sitemap: https://cashero-app.vercel.app/sitemap.xml
