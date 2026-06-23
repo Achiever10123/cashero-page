@@ -29,7 +29,7 @@
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-inner">
-    <a href="#" class="logo">casher<span>o</span> ai</a>
+    <a href="#" class="logo"><img src="favicon-32x32.png" alt="Cashero AI logo" class="nav-logo-icon">casher<span>o</span> ai</a>
     <div class="nav-links">
       <a href="#features">Features</a>
       <a href="#how">How it works</a>
@@ -38,7 +38,7 @@
       <a href="#faq">FAQ</a>
     </div>
     <div class="nav-right">
-      <a href="https://cashero-ai.vercel.app" class="btn btn-primary btn-sm">Open app — it's free</a>
+      <button onclick="openWaitlist()" class="btn btn-primary btn-sm">Open app — it's free</button>
       <button class="nav-hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -54,7 +54,7 @@
   <a href="#security" class="drawer-link">Security</a>
   <a href="#faq" class="drawer-link">FAQ</a>
   <div class="drawer-cta">
-    <a href="https://cashero-ai.vercel.app" class="btn btn-primary">Open app — it's free</a>
+    <button onclick="openWaitlist()" class="btn btn-primary">Open app — it's free</button>
   </div>
 </nav>
 
@@ -71,13 +71,13 @@
         Your money,<br><span class="line2">finally honest.</span>
       </h1>
       <p class="hero-sub sr sr-delay-2">
-        Cashero AI tracks your expenses, spots overspending before it hurts, and delivers the kind of financial analysis your bank will never give you.
+        Cashero tracks every dollar you log, flags when a category is bleeding you dry, and tells you exactly what to cut — in plain English, not dashboard jargon.
       </p>
       <div class="hero-actions sr sr-delay-3">
-        <a href="https://cashero-ai.vercel.app" class="btn btn-primary">
+        <button onclick="openWaitlist()" class="btn btn-primary">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           Open the app — it's free
-        </a>
+        </button>
         <a href="#features" class="btn btn-outline">See all features</a>
       </div>
       <div class="hero-cta-note sr sr-delay-3">No account. No credit card. Works instantly in your browser.</div>
@@ -180,7 +180,7 @@
     <div class="section-header sr">
       <div class="tag">Features</div>
       <h2 class="heading section-title">Everything a freelancer needs to stay in control</h2>
-      <p class="section-sub">No accounting degree. No bloated dashboards. Just the tools that keep your money visible and your stress low.</p>
+      <p class="section-sub">Built for freelancers who'd rather spend 30 seconds logging an expense than an hour untangling a spreadsheet at month-end.</p>
     </div>
     <div class="features-grid">
 
@@ -353,11 +353,19 @@
         <div class="step-num">02</div>
         <div class="step-title">Log expenses as they happen</div>
         <div class="step-desc">Type naturally, use voice input, or paste from a receipt. The AI categorizes it instantly across 9 categories. Takes <span class="step-accent">under 5 seconds per entry.</span></div>
+        <div class="payout-note">
+          <div class="payout-note-icon">💡</div>
+          <div class="payout-note-text"><strong>Best habit:</strong> Log right after you spend — not at the end of the day. A 5-second entry while the receipt is in your hand beats trying to reconstruct a week from memory.</div>
+        </div>
       </div>
       <div class="step sr sr-delay-2">
         <div class="step-num">03</div>
         <div class="step-title">Let AI show you what to cut</div>
         <div class="step-desc">Run a full analysis any time. Cashero reads the whole month, identifies patterns, and gives you <span class="step-accent">specific cuts with targets</span> — not generic advice.</div>
+        <div class="payout-note">
+          <div class="payout-note-icon">💡</div>
+          <div class="payout-note-text"><strong>Run it mid-month too.</strong> You don't have to wait for the 30th. A check-in on the 15th gives you two weeks to actually change something instead of just reading a post-mortem.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -399,7 +407,7 @@
         <div class="tag">Global</div>
         <h2 class="heading section-title" style="margin-top:20px">Built for freelancers everywhere</h2>
         <p class="section-sub">11 currencies with region-aware AI analysis. Cashero knows that a 30% food spend in Lagos hits differently than in London — and its advice reflects that.</p>
-        <a href="https://cashero-ai.vercel.app" class="btn btn-primary" style="margin-top:32px">Open the app</a>
+        <button onclick="openWaitlist()" class="btn btn-primary" style="margin-top:32px">Open the app</button>
       </div>
       <div class="global-currencies sr sr-delay-1">
         <div class="cur-card"><div class="cur-symbol">$</div><div class="cur-name">USD</div></div>
@@ -498,14 +506,48 @@
   <div class="container">
     <div class="tag sr"><span class="tag-dot"></span>Free · No account · Works now</div>
     <h2 class="display cta-title sr sr-delay-1">Stop guessing where<br>your money went.</h2>
-    <p class="cta-sub sr sr-delay-2">Open Cashero AI and start logging in 30 seconds. No signup, no credit card, no excuses.</p>
-    <a href="https://cashero-ai.vercel.app" class="btn btn-primary sr sr-delay-3" style="font-size:15px;padding:15px 36px">
+    <p class="cta-sub sr sr-delay-2">Drop your email and we'll send you the link. No account, no credit card — just the app.</p>
+    <button onclick="openWaitlist()" class="btn btn-primary sr sr-delay-3" style="font-size:15px;padding:15px 36px">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       Open Cashero AI free
-    </a>
+    </button>
     <div class="cta-note sr sr-delay-4">Works in your browser. Offline-ready. Your data stays on your device.</div>
   </div>
 </section>
+
+<!-- WAITLIST MODAL -->
+<div id="waitlist-overlay" class="wl-overlay" aria-hidden="true">
+  <div class="wl-modal" role="dialog" aria-modal="true" aria-labelledby="wl-title">
+    <button class="wl-close" onclick="closeWaitlist()" aria-label="Close">&times;</button>
+    <div class="wl-icon">
+      <img src="favicon-32x32.png" alt="" width="32" height="32">
+    </div>
+    <h2 class="wl-title" id="wl-title">Get early access</h2>
+    <p class="wl-sub">Drop your email and we'll send you the link the moment it's ready. No spam, no account required.</p>
+    <form action="https://formsubmit.co/YOUR_EMAIL_HERE" method="POST" class="wl-form" id="wl-form">
+      <input type="hidden" name="_subject" value="New Cashero AI early access request">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://cashero-ai.vercel.app">
+      <div class="wl-field">
+        <input
+          type="email"
+          name="email"
+          id="wl-email"
+          class="wl-input"
+          placeholder="you@example.com"
+          required
+          autocomplete="email"
+        >
+        <label for="wl-email" class="wl-label">Email address</label>
+      </div>
+      <button type="submit" class="btn btn-primary wl-submit">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Send me the link
+      </button>
+    </form>
+    <p class="wl-fine">Your email won't be shared or sold. Unsubscribe any time.</p>
+  </div>
+</div>
 
 <!-- FOOTER -->
 <footer>
@@ -517,7 +559,7 @@
         <a href="#how">How it works</a>
         <a href="#security">Privacy</a>
         <a href="#faq">FAQ</a>
-        <a href="https://cashero-ai.vercel.app">Open App</a>
+        <a href="#" onclick="openWaitlist();return false;">Open App</a>
       </div>
       <div class="footer-copy">© 2026 Cashero AI · Smart expense tracking for freelancers</div>
     </div>
