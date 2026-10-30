@@ -202,6 +202,7 @@ waitlistForm.addEventListener('submit', async event => {
     waitlistForm.reset();
     waitlistStatus.textContent = 'Thanks! We’ll be in touch soon.';
     waitlistStatus.classList.add('success');
+    window.location.assign('https://cashero-ai.vercel.app/');
   } catch (error) {
     waitlistStatus.textContent = error.message || 'Something went wrong. Please try again.';
     waitlistStatus.classList.add('error');
