@@ -16,36 +16,36 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <!-- Primary SEO -->
-<title>Cashero AI | Free Expense Tracker for Freelancers</title>
-<meta name="description" content="Cashero AI is a free expense tracker for freelancers. Log spending, set budgets, track recurring bills, and get AI insights. Your data stays on your device."/>
-<meta name="author" content="Cashero AI"/>
+<title>Cashero | Expense tracking for independent work</title>
+<meta name="description" content="A straightforward expense tracker for freelancers and independent workers. Record spending, set budgets, and review your finances in one place."/>
+<meta name="author" content="Cashero"/>
 <link rel="canonical" href="https://cashero-app.vercel.app/"/>
 
 <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://cashero-app.vercel.app/"/>
-<meta property="og:site_name" content="Cashero AI"/>
-<meta property="og:title" content="Cashero AI | Free Expense Tracker for Freelancers"/>
-<meta property="og:description" content="A free expense tracker for freelancers to log spending, set budgets, track recurring bills, and get AI insights. Your data stays on your device."/>
+<meta property="og:site_name" content="Cashero"/>
+<meta property="og:title" content="Cashero | Expense tracking for independent work"/>
+<meta property="og:description" content="Record spending, set budgets, and review your finances in one place with Cashero."/>
 <meta property="og:image" content="https://cashero-app.vercel.app/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
-<meta property="og:image:alt" content="Cashero AI — expense tracker dashboard showing spending breakdown and AI verdict"/>
+<meta property="og:image:alt" content="Cashero expense tracker dashboard showing a monthly spending breakdown"/>
 <meta property="og:locale" content="en_US"/>
 
 <!-- Twitter / X Card -->
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:url" content="https://cashero-app.vercel.app/"/>
-<meta name="twitter:title" content="Cashero AI | Free Expense Tracker for Freelancers"/>
-<meta name="twitter:description" content="A free expense tracker for freelancers to log spending, set budgets, track recurring bills, and get AI insights. Your data stays on your device."/>
+<meta name="twitter:title" content="Cashero | Expense tracking for independent work"/>
+<meta name="twitter:description" content="Record spending, set budgets, and review your finances in one place with Cashero."/>
 <meta name="twitter:image" content="https://cashero-app.vercel.app/og-image.png"/>
-<meta name="twitter:image:alt" content="Cashero AI dashboard showing spending breakdown and AI spending verdict"/>
+<meta name="twitter:image:alt" content="Cashero dashboard showing a monthly spending breakdown"/>
 
 <!-- PWA / Mobile -->
-<meta name="theme-color" content="#00d4c8"/>
+<meta name="theme-color" content="#176b5b"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-<meta name="apple-mobile-web-app-title" content="Cashero AI"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+<meta name="apple-mobile-web-app-title" content="Cashero"/>
 
 <!-- Robots -->
 <meta name="robots" content="index, follow, max-image-preview:large"/>
@@ -62,16 +62,16 @@
       "@type": "WebSite",
       "@id": "https://cashero-app.vercel.app/#website",
       "url": "https://cashero-app.vercel.app/",
-      "name": "Cashero AI",
-      "description": "Cashero AI is a free expense tracker for freelancers. Log spending, set budgets, track recurring bills, and get AI insights. Your data stays on your device.",
+      "name": "Cashero",
+      "description": "Expense tracking for freelancers and independent workers.",
       "inLanguage": "en"
     },
     {
       "@type": "SoftwareApplication",
       "@id": "https://cashero-app.vercel.app/#application",
-      "name": "Cashero AI",
+      "name": "Cashero",
       "url": "https://cashero-app.vercel.app/",
-      "description": "Cashero AI is a free expense tracker for freelancers. Log spending, set budgets, track recurring bills, and get AI insights. Your data stays on your device.",
+      "description": "A straightforward expense tracker for freelancers and independent workers.",
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Web browser",
       "isPartOf": {
@@ -83,21 +83,21 @@
         "priceCurrency": "USD"
       },
       "featureList": [
-        "AI expense categorization",
-        "Monthly spending analysis",
+        "Expense categorization",
+        "Monthly spending summaries",
         "Budget alerts at 80% and 100%",
-        "Financial health score",
+        "Monthly financial overview",
         "Savings goals tracker",
         "Recurring expense tracker",
         "CSV export",
         "PIN lock with recovery phrase",
         "11 global currencies",
-        "Offline-ready PWA"
+        "Offline-ready web app"
       ],
       "screenshot": "https://cashero-app.vercel.app/og-image.png",
       "creator": {
         "@type": "Organization",
-        "name": "Cashero AI"
+        "name": "Cashero"
       }
     }
   ]
@@ -127,17 +127,17 @@
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-inner">
-    <a href="#" class="logo"><img src="favicon-32x32.png" alt="Cashero AI logo" class="nav-logo-icon">casher<span>o</span> ai</a>
+    <a href="#hero" class="logo"><img src="favicon-32x32.png" alt="" class="nav-logo-icon">Cashero</a>
     <div class="nav-links">
       <a href="#features">Features</a>
       <a href="#how">How it works</a>
-      <a href="#global">Global</a>
+      <a href="#global">Currencies</a>
       <a href="#security">Security</a>
       <a href="#faq">FAQ</a>
     </div>
     <div class="nav-right">
-      <button onclick="openWaitlist()" class="btn btn-primary btn-sm">Open app — it's free</button>
-      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <button onclick="openWaitlist()" class="btn btn-primary btn-sm">Get the app link</button>
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -148,42 +148,38 @@
 <nav class="nav-drawer" id="drawer">
   <a href="#features" class="drawer-link">Features</a>
   <a href="#how" class="drawer-link">How it works</a>
-  <a href="#global" class="drawer-link">Global</a>
+  <a href="#global" class="drawer-link">Currencies</a>
   <a href="#security" class="drawer-link">Security</a>
   <a href="#faq" class="drawer-link">FAQ</a>
   <div class="drawer-cta">
-    <button onclick="openWaitlist()" class="btn btn-primary">Open app — it's free</button>
+    <button onclick="openWaitlist()" class="btn btn-primary">Get the app link</button>
   </div>
 </nav>
 
 <!-- HERO -->
+<main>
 <section id="hero">
-  <div class="hero-grid"></div>
-  <div class="glow-top"></div>
-  <div class="glow-left"></div>
-  <div class="glow-right"></div>
   <div class="container">
     <div class="hero-content">
-      <div class="tag sr"><span class="tag-dot"></span>AI-powered · Free to use · No signup</div>
+      <div class="tag sr">Expense tracking for independent work</div>
       <h1 class="display hero-title sr sr-delay-1">
-        Your money,<br><span class="line2">finally honest.</span>
+        A clearer view of<br><span class="line2">your finances.</span>
       </h1>
       <p class="hero-sub sr sr-delay-2">
-        Cashero AI is a free expense tracker for freelancers. Log spending, set budgets, track recurring bills, and get AI insights. Your data stays on your device.
+        Keep track of what you earn and spend, set practical budgets, and review the month without another spreadsheet.
       </p>
       <div class="hero-actions sr sr-delay-3">
         <button onclick="openWaitlist()" class="btn btn-primary">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          Open the app — it's free
+          Get the app link
         </button>
-        <a href="#features" class="btn btn-outline">See all features</a>
+        <a href="#features" class="btn btn-outline">Explore features</a>
       </div>
-      <div class="hero-cta-note sr sr-delay-3">No account. No credit card. Works instantly in your browser.</div>
+      <div class="hero-cta-note sr sr-delay-3">Enter your email to continue. No account is needed to use Cashero.</div>
       <div class="social-proof sr sr-delay-4">
-        <div class="sp-item"><span class="sp-icon">🔒</span> Data stays on your device</div>
-        <div class="sp-item"><span class="sp-icon">📵</span> Works offline</div>
-        <div class="sp-item"><span class="sp-icon">🌍</span> 11 currencies</div>
-        <div class="sp-item"><span class="sp-icon">⚡</span> AI analysis in seconds</div>
+        <div class="sp-item">Local browser storage</div>
+        <div class="sp-item">Works offline</div>
+        <div class="sp-item">11 currencies</div>
       </div>
     </div>
     <div class="app-preview sr">
@@ -196,7 +192,7 @@
         </div>
         <div class="app-body">
           <div class="app-stat">
-            <div class="app-stat-label">PAYOUT</div>
+            <div class="app-stat-label">INCOME</div>
             <div class="app-stat-val" style="color:var(--blue)">$4,000</div>
             <div class="app-stat-sub">This month's income</div>
           </div>
@@ -208,7 +204,7 @@
           <div class="app-stat">
             <div class="app-stat-label">SAVED</div>
             <div class="app-stat-val" style="color:var(--mint)">$1,153</div>
-            <div class="app-stat-sub">28.8% rate · on track</div>
+            <div class="app-stat-sub">28.8% saved this month</div>
           </div>
           <div class="app-cat-row">
             <div class="app-cat">
@@ -231,9 +227,9 @@
             </div>
           </div>
           <div class="app-ai">
-            <div class="app-ai-badge">AI</div>
+            <div class="app-ai-badge">MONTHLY SUMMARY</div>
             <div class="app-ai-text" id="ai-typetext">
-              <strong>Verdict:</strong> You're allocating 16% of income to software tools. That $440 includes 3 tools you haven't opened this month — cut them and pocket <strong>$87/mo</strong>.<span class="app-ai-cursor"></span>
+              Software and tools account for 16% of spending. Review recurring costs alongside your budget before making changes.
             </div>
           </div>
         </div>
@@ -242,58 +238,27 @@
   </div>
 </section>
 
-<!-- TICKER -->
-<div class="ticker-wrap">
-  <div class="ticker-track">
-    <div class="ticker-item"><span class="ic">⚡</span> Instant AI Parsing</div>
-    <div class="ticker-item"><span class="ic">🎯</span> Budget Alerts at 80% & 100%</div>
-    <div class="ticker-item"><span class="ic">🧠</span> Monthly AI Analysis</div>
-    <div class="ticker-item"><span class="ic">↺</span> Recurring Expense Tracker</div>
-    <div class="ticker-item"><span class="ic">🏆</span> Savings Goals</div>
-    <div class="ticker-item"><span class="ic">📊</span> Financial Health Score</div>
-    <div class="ticker-item"><span class="ic">📤</span> CSV Export</div>
-    <div class="ticker-item"><span class="ic">🔒</span> PIN Lock & Recovery</div>
-    <div class="ticker-item"><span class="ic">🌍</span> 11 Global Currencies</div>
-    <div class="ticker-item"><span class="ic">📵</span> Offline-ready PWA</div>
-    <div class="ticker-item"><span class="ic">📋</span> Weekly Check-ins</div>
-    <div class="ticker-item"><span class="ic">🌙</span> Dark & Light Mode</div>
-    <div class="ticker-item"><span class="ic">⚡</span> Instant AI Parsing</div>
-    <div class="ticker-item"><span class="ic">🎯</span> Budget Alerts at 80% & 100%</div>
-    <div class="ticker-item"><span class="ic">🧠</span> Monthly AI Analysis</div>
-    <div class="ticker-item"><span class="ic">↺</span> Recurring Expense Tracker</div>
-    <div class="ticker-item"><span class="ic">🏆</span> Savings Goals</div>
-    <div class="ticker-item"><span class="ic">📊</span> Financial Health Score</div>
-    <div class="ticker-item"><span class="ic">📤</span> CSV Export</div>
-    <div class="ticker-item"><span class="ic">🔒</span> PIN Lock & Recovery</div>
-    <div class="ticker-item"><span class="ic">🌍</span> 11 Global Currencies</div>
-    <div class="ticker-item"><span class="ic">📵</span> Offline-ready PWA</div>
-    <div class="ticker-item"><span class="ic">📋</span> Weekly Check-ins</div>
-    <div class="ticker-item"><span class="ic">🌙</span> Dark & Light Mode</div>
-  </div>
-</div>
-
 <!-- FEATURES -->
 <section id="features">
   <div class="container">
     <div class="section-header sr">
       <div class="tag">Features</div>
-      <h2 class="heading section-title">Everything a freelancer needs to stay in control</h2>
-      <p class="section-sub">Built for freelancers who'd rather spend 30 seconds logging an expense than an hour untangling a spreadsheet at month-end.</p>
+      <h2 class="heading section-title">The essentials for managing day-to-day finances</h2>
+      <p class="section-sub">A simple place to record expenses, understand spending patterns, and keep recurring costs in view.</p>
     </div>
     <div class="features-grid">
 
-      <!-- AI verdict -->
+      <!-- Monthly summary -->
       <div class="fc fc-span-5 sr">
         <div class="fc-icon" style="background:rgba(245,166,35,.1)">🧠</div>
-        <div class="fc-title">AI that doesn't sugarcoat</div>
-        <div class="fc-desc">Every month, Cashero reads your full spending history and delivers a verdict — brutally honest, region-aware, and specific to your categories.</div>
-        <div class="verdict">
-          <div class="verdict-eye">THIS MONTH'S VERDICT</div>
-          <div class="verdict-body">"You spent 32% of your income on food. Either you eat like a Michelin judge or you're stress-eating your savings. Either way, it ends now."</div>
-          <div class="verdict-pills">
-            <div class="vpill">Cut Food 20%</div>
-            <div class="vpill">Cancel 2 subs</div>
-            <div class="vpill">Save $340 more</div>
+        <div class="fc-title">A useful monthly overview</div>
+        <div class="fc-desc">Review spending by category and see how it compares with your income and budgets. Monthly summaries help you spot areas to review.</div>
+        <div class="summary-card">
+          <div class="summary-label">MONTHLY SUMMARY · EXAMPLE</div>
+          <div class="summary-copy">Software and tools account for 16% of spending. Review recurring costs and compare them with your budget.</div>
+          <div class="summary-points">
+            <div class="vpill">Review subscriptions</div>
+            <div class="vpill">Check category budgets</div>
           </div>
         </div>
       </div>
@@ -301,8 +266,8 @@
       <!-- Log expenses -->
       <div class="fc fc-span-7 sr sr-delay-1">
         <div class="fc-icon" style="background:rgba(0,212,200,.1)">⚡</div>
-        <div class="fc-title">Log expenses in seconds</div>
-        <div class="fc-desc">Type naturally or speak it. "Lunch $24 Nandos" — Cashero picks the category, amount, and date automatically. No menus to tap through.</div>
+        <div class="fc-title">Record expenses as they happen</div>
+        <div class="fc-desc">Add a purchase with a short note or voice input. Cashero organizes entries by category so they are easier to review later.</div>
         <div class="exp-list" id="exp-list">
           <div class="exp-row" style="transition-delay:.05s">
             <div class="exp-left"><div class="exp-dot" style="background:#ff6b6b"></div><div><div class="exp-note">Nandos lunch</div><div class="exp-cat">Food & Dining</div></div></div>
@@ -323,15 +288,15 @@
         </div>
         <div class="voice-box">
           <div class="waves"><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div></div>
-          "Add $49 software expense for Figma Pro"
+          "Lunch with a client — $24"
         </div>
       </div>
 
       <!-- Budget alerts -->
       <div class="fc fc-span-7 sr">
         <div class="fc-icon" style="background:rgba(245,166,35,.1)">🎯</div>
-        <div class="fc-title">Budgets that warn you before it's too late</div>
-        <div class="fc-desc">Set spending limits per category. Get notified at 80% and 100%. End-of-month projections show if you're heading for trouble before you get there.</div>
+        <div class="fc-title">Set budgets by category</div>
+        <div class="fc-desc">Choose a monthly limit for each category and keep an eye on how much you have used. Alerts help you notice when you are approaching a limit.</div>
         <div class="budget-demo">
           <div class="budget-cats" id="bcats">
             <div class="bcat"><div class="bcat-name">Food & Dining</div><div class="bcat-track"><div class="bcat-fill" style="width:0%;background:#ff6b6b" data-w="84"></div></div><div class="bcat-pct" style="color:#ff6b6b">84%</div></div>
@@ -345,8 +310,8 @@
       <!-- Health score -->
       <div class="fc fc-span-5 sr sr-delay-1">
         <div class="fc-icon" style="background:rgba(96,165,250,.1)">📊</div>
-        <div class="fc-title">Financial health score</div>
-        <div class="fc-desc">A live score from your savings rate, budget adherence, and category balance. One number that tells the full story.</div>
+        <div class="fc-title">Understand your monthly position</div>
+        <div class="fc-desc">See income, spending, savings rate, and budget use together for a more complete picture of the month.</div>
         <div class="health-wrap">
           <div class="ring-container">
             <svg width="110" height="110" viewBox="0 0 110 110">
@@ -354,7 +319,7 @@
               <circle id="ring-arc" cx="55" cy="55" r="44" fill="none" stroke="url(#rg)" stroke-width="9" stroke-dasharray="276.5" stroke-dashoffset="276.5" stroke-linecap="round"/>
               <defs><linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00d4c8"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient></defs>
             </svg>
-            <div class="ring-score"><div class="ring-num" id="ring-num">0</div><div class="ring-lbl">SCORE</div></div>
+            <div class="ring-score"><div class="ring-num" id="ring-num">0</div>                        <div class="ring-lbl">SCORE</div></div>
           </div>
           <div class="ring-stats">
             <div class="rstat">Savings rate <strong style="color:var(--mint)">28%</strong></div>
@@ -368,8 +333,8 @@
       <!-- Savings goals -->
       <div class="fc fc-span-6 sr">
         <div class="fc-icon" style="background:rgba(52,211,153,.1)">🏆</div>
-        <div class="fc-title">Savings goals you can actually track</div>
-        <div class="fc-desc">Set a target, log your progress, watch the bar move. Deadlines keep you honest, and Cashero flags when you're falling behind.</div>
+        <div class="fc-title">Keep savings goals in view</div>
+        <div class="fc-desc">Set a target and record your progress over time, whether you are building a reserve or saving for a planned purchase.</div>
         <div class="goals-list" id="goals-list">
           <div class="goal-item">
             <div class="goal-top"><div class="goal-name">Emergency fund</div><div class="goal-pct">68%</div></div>
@@ -387,38 +352,13 @@
       <!-- Recurring -->
       <div class="fc fc-span-6 sr sr-delay-1">
         <div class="fc-icon" style="background:rgba(244,114,182,.1)">↺</div>
-        <div class="fc-title">Stop forgetting what you're paying for</div>
-        <div class="fc-desc">Log subscriptions once. Cashero tracks them, reminds you before billing, and shows the annual total that's quietly bleeding you dry.</div>
+        <div class="fc-title">Keep recurring costs visible</div>
+        <div class="fc-desc">Record subscriptions and regular bills to see their monthly and annual cost alongside your other spending.</div>
         <div class="recur-list">
           <div class="recur-row"><div class="recur-left"><div class="exp-dot" style="background:#60a5fa"></div><div><div class="recur-name">Figma Pro</div><div class="recur-freq">monthly</div></div></div><div class="recur-amt" style="color:#60a5fa">$15/mo</div></div>
           <div class="recur-row"><div class="recur-left"><div class="exp-dot" style="background:#a78bfa"></div><div><div class="recur-name">Notion</div><div class="recur-freq">monthly</div></div></div><div class="recur-amt" style="color:#a78bfa">$16/mo</div></div>
           <div class="recur-row"><div class="recur-left"><div class="exp-dot" style="background:#f472b6"></div><div><div class="recur-name">Adobe CC</div><div class="recur-freq">monthly</div></div></div><div class="recur-amt" style="color:#f472b6">$55/mo</div></div>
-          <div class="recur-row" style="background:rgba(255,107,107,.06);border:1px solid rgba(255,107,107,.15);border-radius:8px"><div class="recur-left"><span style="font-size:11px;color:var(--text2)">Annual bleed:</span></div><div class="recur-amt" style="color:var(--red)">$1,032/yr</div></div>
-        </div>
-      </div>
-
-      <!-- Weekly check-in — new card -->
-      <div class="fc fc-span-12 sr">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center">
-          <div>
-            <div class="fc-icon" style="background:rgba(96,165,250,.1)">📋</div>
-            <div class="fc-title">Weekly check-ins that keep you honest</div>
-            <div class="fc-desc">Every week, Cashero generates a short summary of how your spending is tracking — category by category. You see it the moment you open the app, not at the end of the month when the damage is already done.</div>
-          </div>
-          <div class="checkin-preview">
-            <div class="checkin-header">
-              <span style="font-size:16px">📋</span>
-              <span class="checkin-week">WEEK 2 CHECK-IN · JUNE 2026</span>
-            </div>
-            <div class="checkin-body">
-              You're <strong>14 days into the month</strong> and already at 71% of your food budget. Software spending is steady at 55%. Transport is fine. <strong>At this pace, you'll overshoot food by $120</strong> before the month closes — cut 3 meals out or cook more this week.
-            </div>
-            <div class="checkin-footer">
-              <div class="ck-pill">Food at risk</div>
-              <div class="ck-pill">Software steady</div>
-              <div class="ck-pill">On pace to save $900</div>
-            </div>
-          </div>
+          <div class="recur-row" style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px"><div class="recur-left"><span style="font-size:11px;color:var(--text2)">Total per year</span></div><div class="recur-amt" style="color:var(--mint)">$1,032/yr</div></div>
         </div>
       </div>
 
@@ -434,35 +374,35 @@
   <div class="container">
     <div class="section-header sr" style="text-align:center;max-width:540px;margin-left:auto;margin-right:auto">
       <div class="tag">How it works</div>
-      <h2 class="heading section-title" style="max-width:100%">Up and running in under a minute</h2>
-      <p class="section-sub" style="max-width:100%">No account setup. No onboarding wizard. Open the app and start logging.</p>
+      <h2 class="heading section-title" style="max-width:100%">A straightforward monthly routine</h2>
+      <p class="section-sub" style="max-width:100%">Start with a few details, then update your records as you go.</p>
     </div>
     <div class="steps">
       <div class="step sr">
         <div class="step-num">01</div>
-        <div class="step-title">Set your monthly payout</div>
-        <div class="step-desc">Enter what you earned this month. Cashero uses it as the baseline for every percentage, projection, and health score — <span class="step-accent">without sending it anywhere.</span></div>
+        <div class="step-title">Add your income</div>
+        <div class="step-desc">Enter your monthly income so you can compare spending with what came in.</div>
         <div class="payout-note">
           <div class="payout-note-icon">💡</div>
-          <div class="payout-note-text"><strong>What's a payout?</strong> It's your monthly income — whether that's a client invoice, a payslip, or a transfer. You enter it manually so Cashero can show what percentage of it you're spending.</div>
+          <div class="payout-note-text"><strong>Income can vary.</strong> Update the amount to reflect client payments, salary, or other earnings for the month.</div>
         </div>
       </div>
       <div class="step sr sr-delay-1">
         <div class="step-num">02</div>
-        <div class="step-title">Log expenses as they happen</div>
-        <div class="step-desc">Type naturally, use voice input, or paste from a receipt. The AI categorizes it instantly across 9 categories. Takes <span class="step-accent">under 5 seconds per entry.</span></div>
+        <div class="step-title">Record your expenses</div>
+        <div class="step-desc">Add an amount and a note, then organize the purchase under a category. Voice input is available when it is more convenient.</div>
         <div class="payout-note">
           <div class="payout-note-icon">💡</div>
-          <div class="payout-note-text"><strong>Best habit:</strong> Log right after you spend — not at the end of the day. A 5-second entry while the receipt is in your hand beats trying to reconstruct a week from memory.</div>
+          <div class="payout-note-text"><strong>Keep it simple.</strong> A short description is enough to make an entry easier to recognize later.</div>
         </div>
       </div>
       <div class="step sr sr-delay-2">
         <div class="step-num">03</div>
-        <div class="step-title">Let AI show you what to cut</div>
-        <div class="step-desc">Run a full analysis any time. Cashero reads the whole month, identifies patterns, and gives you <span class="step-accent">specific cuts with targets</span> — not generic advice.</div>
+        <div class="step-title">Review your month</div>
+        <div class="step-desc">Use category totals, budgets, and recurring costs to understand where your money went and decide what to adjust.</div>
         <div class="payout-note">
           <div class="payout-note-icon">💡</div>
-          <div class="payout-note-text"><strong>Run it mid-month too.</strong> You don't have to wait for the 30th. A check-in on the 15th gives you two weeks to actually change something instead of just reading a post-mortem.</div>
+          <div class="payout-note-text"><strong>Review regularly.</strong> Checking in during the month makes it easier to keep budgets up to date.</div>
         </div>
       </div>
     </div>
@@ -474,24 +414,24 @@
   <div class="container">
     <div class="section-header sr">
       <div class="tag">Privacy & Security</div>
-      <h2 class="heading section-title">Your data never leaves your device</h2>
-      <p class="section-sub">No server. No database. No account. Everything lives in your browser — and you can lock it behind a PIN.</p>
+      <h2 class="heading section-title">Your records stay in your browser</h2>
+      <p class="section-sub">Cashero stores your financial records locally in the browser rather than syncing them to an account.</p>
     </div>
     <div class="security-grid">
       <div class="sec-card sr">
         <div class="sec-icon">💾</div>
-        <div class="sec-title">Local-only storage</div>
-        <div class="sec-desc">All expenses, budgets, and goals live in your browser's localStorage. No backend receives your financial data — ever. Clearing your browser data is the only way to delete it.</div>
+        <div class="sec-title">Stored on your device</div>
+        <div class="sec-desc">Expenses, budgets, and goals are saved in your browser. They are not available on other devices unless you export and move your records yourself.</div>
       </div>
       <div class="sec-card sr sr-delay-1">
         <div class="sec-icon">🔐</div>
-        <div class="sec-title">PIN lock with recovery phrase</div>
-        <div class="sec-desc">Enable a PIN to lock the app on your device. Your data is protected with a hashed key. If you forget the PIN, a recovery phrase lets you back in without losing anything.</div>
+        <div class="sec-title">Optional app lock</div>
+        <div class="sec-desc">Set a PIN to add a lock when opening the app. Keep your recovery phrase somewhere safe in case you need to regain access.</div>
       </div>
       <div class="sec-card sr sr-delay-2">
         <div class="sec-icon">📤</div>
-        <div class="sec-title">Export and own your data</div>
-        <div class="sec-desc">Export everything to CSV any time. No vendor lock-in, no subscription required to get your own history out. It's your data — take it wherever you want.</div>
+        <div class="sec-title">Export your records</div>
+        <div class="sec-desc">Export your history as a CSV file so you can keep a separate copy or use it in another spreadsheet.</div>
       </div>
     </div>
   </div>
@@ -502,10 +442,10 @@
   <div class="container">
     <div class="global-inner">
       <div class="sr">
-        <div class="tag">Global</div>
-        <h2 class="heading section-title" style="margin-top:20px">Built for freelancers everywhere</h2>
-        <p class="section-sub">11 currencies with region-aware AI analysis. Cashero knows that a 30% food spend in Lagos hits differently than in London — and its advice reflects that.</p>
-        <button onclick="openWaitlist()" class="btn btn-primary" style="margin-top:32px">Open the app</button>
+        <div class="tag">Currency support</div>
+        <h2 class="heading section-title" style="margin-top:20px">Track spending in your currency</h2>
+        <p class="section-sub">Choose from 11 supported currencies and record your finances using the amounts that make sense to you.</p>
+        <button onclick="openWaitlist()" class="btn btn-primary" style="margin-top:32px">Get the app link</button>
       </div>
       <div class="global-currencies sr sr-delay-1">
         <div class="cur-card"><div class="cur-symbol">$</div><div class="cur-name">USD</div></div>
@@ -524,74 +464,50 @@
   </div>
 </section>
 
-<!-- STATS -->
-<section id="stats">
-  <div class="container">
-    <div class="stats-belt sr">
-      <div class="stat-cell">
-        <div class="stat-val" id="s1">0</div>
-        <div class="stat-label">spending categories, covering every corner of a freelancer's life</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-val" id="s2">0</div>
-        <div class="stat-label">currencies — each with its own AI economic context</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-val" id="s3">0%</div>
-        <div class="stat-label">of your financial data leaves your device</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-val">&lt;5s</div>
-        <div class="stat-label">to log any expense with AI auto-categorization</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- FAQ -->
 <section id="faq">
   <div class="container">
     <div class="faq-inner">
       <div class="sr">
         <div class="tag">FAQ</div>
-        <h2 class="heading section-title" style="margin-top:20px;max-width:280px">Questions you probably have</h2>
+        <h2 class="heading section-title" style="margin-top:20px;max-width:280px">Frequently asked questions</h2>
       </div>
       <div class="faq-list sr sr-delay-1">
         <div class="faq-item">
-          <div class="faq-q">Do I need to create an account?
+          <button class="faq-q" type="button" aria-expanded="false">Do I need an account?
             <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </div>
-          <div class="faq-a">No. Cashero runs entirely in your browser with no account, no email, and no signup. Open the app and start immediately. Your data is saved locally on your device.</div>
+          </button>
+          <div class="faq-a">You need an email address to receive the app link. Once in the app, you can use Cashero without creating an account.</div>
         </div>
         <div class="faq-item">
-          <div class="faq-q">Is my financial data safe?
+          <button class="faq-q" type="button" aria-expanded="false">Where is my financial data stored?
             <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </div>
-          <div class="faq-a">Yes. Everything is stored in your browser's localStorage — no server ever receives your expenses, budgets, or payouts. You can also enable a PIN lock with a recovery phrase for extra protection.</div>
+          </button>
+          <div class="faq-a">Your records are saved in your browser on the device you use. They are not synced between devices. Some features may require an internet connection.</div>
         </div>
         <div class="faq-item">
-          <div class="faq-q">Does it work without internet?
+          <button class="faq-q" type="button" aria-expanded="false">Can I use it offline?
             <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </div>
-          <div class="faq-a">Yes. Cashero is a Progressive Web App (PWA) and caches itself for offline use. You can log expenses, view your dashboard, and check budgets without a connection. AI analysis requires internet.</div>
+          </button>
+          <div class="faq-a">Cashero is designed to work offline for core tasks such as recording expenses and reviewing saved information. Features that rely on online services need an internet connection.</div>
         </div>
         <div class="faq-item">
-          <div class="faq-q">What is a "payout" in the app?
+          <button class="faq-q" type="button" aria-expanded="false">What does “income” mean in Cashero?
             <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </div>
-          <div class="faq-a">Your payout is your monthly income — a client payment, a salary transfer, or any money that came in. You enter it manually at the start of each month. Cashero uses it to calculate your savings rate, spending percentages, and health score.</div>
+          </button>
+          <div class="faq-a">It is the money you earned during the month, such as client payments or salary. Enter it manually to compare your income with your spending.</div>
         </div>
         <div class="faq-item">
-          <div class="faq-q">What if I use it on multiple devices?
+          <button class="faq-q" type="button" aria-expanded="false">Can I use Cashero on more than one device?
             <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </div>
-          <div class="faq-a">Since data is stored locally, each device has its own separate data. You can export a CSV from one device and use it as a reference on another. Cross-device sync is not currently available.</div>
+          </button>
+          <div class="faq-a">You can open the app on multiple devices, but records are stored separately in each device's browser. Export your data to keep a copy.</div>
         </div>
         <div class="faq-item">
-          <div class="faq-q">Is Cashero really free?
+          <button class="faq-q" type="button" aria-expanded="false">How much does Cashero cost?
             <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </div>
-          <div class="faq-a">Yes, completely. There is no paid plan, no trial period, and no hidden upgrade wall. The AI analysis features are included at no cost.</div>
+          </button>
+          <div class="faq-a">Cashero is currently free to use. Enter your email to receive the app link.</div>
         </div>
       </div>
     </div>
@@ -602,16 +518,18 @@
 <section id="cta">
   <div class="cta-glow"></div>
   <div class="container">
-    <div class="tag sr"><span class="tag-dot"></span>Free · No account · Works now</div>
-    <h2 class="display cta-title sr sr-delay-1">Stop guessing where<br>your money went.</h2>
-    <p class="cta-sub sr sr-delay-2">Drop your email and we'll send you the link. No account, no credit card — just the app.</p>
+    <div class="tag sr">Get started</div>
+    <h2 class="display cta-title sr sr-delay-1">Make your money<br>easier to follow.</h2>
+    <p class="cta-sub sr sr-delay-2">Enter your email to receive the Cashero app link. No account is required to use the app.</p>
     <button onclick="openWaitlist()" class="btn btn-primary sr sr-delay-3" style="font-size:15px;padding:15px 36px">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      Open Cashero AI free
+      Get the app link
     </button>
-    <div class="cta-note sr sr-delay-4">Works in your browser. Offline-ready. Your data stays on your device.</div>
+    <div class="cta-note sr sr-delay-4">Your financial records are stored in your browser.</div>
   </div>
 </section>
+
+</main>
 
 <!-- WAITLIST MODAL -->
 <div id="waitlist-overlay" class="wl-overlay" aria-hidden="true">
@@ -620,12 +538,13 @@
     <div class="wl-icon">
       <img src="favicon-32x32.png" alt="" width="32" height="32">
     </div>
-    <h2 class="wl-title" id="wl-title">Get early access</h2>
-    <p class="wl-sub">Drop your email and we'll send you the link the moment it's ready. No spam, no account required.</p>
+    <h2 class="wl-title" id="wl-title">Get the Cashero app link</h2>
+    <p class="wl-sub">Enter your email to receive the link. You can use Cashero without creating an account.</p>
     <form action="https://api.web3forms.com/submit" method="POST" class="wl-form" id="wl-form">
       <input type="hidden" name="access_key" value="6144d2bd-170b-40cd-9249-ce4eac2b5ccc">
-      <input type="hidden" name="subject" value="New Cashero AI early access request">
+      <input type="hidden" name="subject" value="Cashero app link request">
       <div class="wl-field">
+        <label for="wl-email" class="wl-label">Email address</label>
         <input
           type="email"
           name="email"
@@ -635,15 +554,14 @@
           required
           autocomplete="email"
         >
-        <label for="wl-email" class="wl-label">Email address</label>
       </div>
       <button type="submit" class="btn btn-primary wl-submit">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        Send me the link
+        Continue to Cashero
       </button>
     </form>
     <p class="wl-status" id="wl-status" role="status" aria-live="polite"></p>
-    <p class="wl-fine">Your email won't be shared or sold. Unsubscribe any time.</p>
+    <p class="wl-fine">Your email is used to send you the app link.</p>
   </div>
 </div>
 
@@ -651,18 +569,18 @@
 <footer>
   <div class="container">
     <div class="footer-inner">
-      <a href="#" class="logo" style="font-size:17px">casher<span>o</span> ai</a>
+      <a href="#hero" class="logo" style="font-size:17px">Cashero</a>
       <div class="footer-links">
         <a href="#features">Features</a>
         <a href="#how">How it works</a>
         <a href="#security">Privacy</a>
         <a href="#faq">FAQ</a>
-        <a href="#" onclick="openWaitlist();return false;">Open App</a>
+        <a href="#" onclick="openWaitlist();return false;">Get the app link</a>
       </div>
-      <div class="footer-copy">© 2026 Cashero AI · Smart expense tracking for freelancers</div>
+      <div class="footer-copy">© 2026 Cashero · Expense tracking for independent work</div>
     </div>
   </div>
 </footer>
+<script src="main.js"></script>
 </body>
-  <script src="main.js"></script>
 </html>
