@@ -16,18 +16,17 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <!-- Primary SEO -->
-<title>Cashero AI — Free Expense Tracker for Freelancers</title>
-<meta name="description" content="Log expenses in seconds, get AI spending analysis, and see where your money goes. Free, offline-ready, 100% local."/>
-<meta name="keywords" content="expense tracker for freelancers, AI expense tracker, free budget app, local expense tracker, no signup expense app, freelancer finance tool"/>
+<title>Cashero AI | Free Expense Tracker for Freelancers</title>
+<meta name="description" content="Cashero AI is a free expense tracker for freelancers. Log spending, set budgets, track recurring bills, and get AI insights. Your data stays on your device."/>
 <meta name="author" content="Cashero AI"/>
-<link rel="canonical" href="https://cashero-app.vercel.app"/>
+<link rel="canonical" href="https://cashero-app.vercel.app/"/>
 
 <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://cashero-app.vercel.app"/>
+<meta property="og:url" content="https://cashero-app.vercel.app/"/>
 <meta property="og:site_name" content="Cashero AI"/>
-<meta property="og:title" content="Cashero AI — Know exactly where your money went."/>
-<meta property="og:description" content="Free AI expense tracker for freelancers. Log expenses, track budgets, get a monthly verdict. No account, no server."/>
+<meta property="og:title" content="Cashero AI | Free Expense Tracker for Freelancers"/>
+<meta property="og:description" content="A free expense tracker for freelancers to log spending, set budgets, track recurring bills, and get AI insights. Your data stays on your device."/>
 <meta property="og:image" content="https://cashero-app.vercel.app/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -36,9 +35,9 @@
 
 <!-- Twitter / X Card -->
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:url" content="https://cashero-app.vercel.app"/>
-<meta name="twitter:title" content="Cashero AI — Know exactly where your money went."/>
-<meta name="twitter:description" content="Free AI expense tracker for freelancers. Local-first, offline-ready, brutally honest. No account needed."/>
+<meta name="twitter:url" content="https://cashero-app.vercel.app/"/>
+<meta name="twitter:title" content="Cashero AI | Free Expense Tracker for Freelancers"/>
+<meta name="twitter:description" content="A free expense tracker for freelancers to log spending, set budgets, track recurring bills, and get AI insights. Your data stays on your device."/>
 <meta name="twitter:image" content="https://cashero-app.vercel.app/og-image.png"/>
 <meta name="twitter:image:alt" content="Cashero AI dashboard showing spending breakdown and AI spending verdict"/>
 
@@ -49,7 +48,7 @@
 <meta name="apple-mobile-web-app-title" content="Cashero AI"/>
 
 <!-- Robots -->
-<meta name="robots" content="index, follow"/>
+<meta name="robots" content="index, follow, max-image-preview:large"/>
 
 <!-- Web App Manifest -->
 <link rel="manifest" href="manifest.json"/>
@@ -58,34 +57,50 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Cashero AI",
-  "url": "https://cashero-app.vercel.app",
-  "description": "Free AI-powered expense tracker for freelancers. Log expenses in seconds, track budgets by category, and get a monthly spending verdict. No account, no server — 100% local.",
-  "applicationCategory": "FinanceApplication",
-  "operatingSystem": "Web Browser",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "featureList": [
-    "AI expense categorization",
-    "Monthly spending analysis",
-    "Budget alerts at 80% and 100%",
-    "Financial health score",
-    "Savings goals tracker",
-    "Recurring expense tracker",
-    "CSV export",
-    "PIN lock with recovery phrase",
-    "11 global currencies",
-    "Offline-ready PWA"
-  ],
-  "screenshot": "https://cashero-app.vercel.app/og-image.png",
-  "creator": {
-    "@type": "Organization",
-    "name": "Cashero AI"
-  }
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://cashero-app.vercel.app/#website",
+      "url": "https://cashero-app.vercel.app/",
+      "name": "Cashero AI",
+      "description": "Cashero AI is a free expense tracker for freelancers. Log spending, set budgets, track recurring bills, and get AI insights. Your data stays on your device.",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://cashero-app.vercel.app/#application",
+      "name": "Cashero AI",
+      "url": "https://cashero-app.vercel.app/",
+      "description": "Cashero AI is a free expense tracker for freelancers. Log spending, set budgets, track recurring bills, and get AI insights. Your data stays on your device.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web browser",
+      "isPartOf": {
+        "@id": "https://cashero-app.vercel.app/#website"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "AI expense categorization",
+        "Monthly spending analysis",
+        "Budget alerts at 80% and 100%",
+        "Financial health score",
+        "Savings goals tracker",
+        "Recurring expense tracker",
+        "CSV export",
+        "PIN lock with recovery phrase",
+        "11 global currencies",
+        "Offline-ready PWA"
+      ],
+      "screenshot": "https://cashero-app.vercel.app/og-image.png",
+      "creator": {
+        "@type": "Organization",
+        "name": "Cashero AI"
+      }
+    }
+  ]
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -154,7 +169,7 @@
         Your money,<br><span class="line2">finally honest.</span>
       </h1>
       <p class="hero-sub sr sr-delay-2">
-        Cashero tracks every dollar you log, flags when a category is bleeding you dry, and tells you exactly what to cut — in plain English, not dashboard jargon.
+        Cashero AI is a free expense tracker for freelancers. Log spending, set budgets, track recurring bills, and get AI insights. Your data stays on your device.
       </p>
       <div class="hero-actions sr sr-delay-3">
         <button onclick="openWaitlist()" class="btn btn-primary">
