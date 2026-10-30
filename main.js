@@ -178,6 +178,38 @@ function closeWaitlist() {
   document.body.style.overflow = '';
 }
 
+const waitlistForm = document.getElementById('wl-form');
+const waitlistStatus = document.getElementById('wl-status');
+
+waitlistForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  const submitButton = waitlistForm.querySelector('button[type="submit"]');
+  submitButton.disabled = true;
+  waitlistStatus.textContent = 'Sending...';
+  waitlistStatus.className = 'wl-status';
+
+  try {
+    const response = await fetch(waitlistForm.action, {
+      method: 'POST',
+      body: new FormData(waitlistForm)
+    });
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      throw new Error(result.message || 'We could not send your request. Please try again.');
+    }
+
+    waitlistForm.reset();
+    waitlistStatus.textContent = 'Thanks! We’ll be in touch soon.';
+    waitlistStatus.classList.add('success');
+  } catch (error) {
+    waitlistStatus.textContent = error.message || 'Something went wrong. Please try again.';
+    waitlistStatus.classList.add('error');
+  } finally {
+    submitButton.disabled = false;
+  }
+});
+
 // Close on overlay click (outside modal)
 document.addEventListener('DOMContentLoaded', function () {
   const overlay = document.getElementById('waitlist-overlay');
