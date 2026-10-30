@@ -106,6 +106,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
 <link rel="stylesheet" href="style.css">
 
    <!-- Favicon Links -->
@@ -250,7 +251,7 @@
 
       <!-- Monthly summary -->
       <div class="fc fc-span-5 sr">
-        <div class="fc-icon" style="background:rgba(245,166,35,.1)">🧠</div>
+        <div class="fc-icon" style="background:rgba(245,166,35,.1)"><i class="fa-solid fa-brain" aria-hidden="true"></i></div>
         <div class="fc-title">A useful monthly overview</div>
         <div class="fc-desc">Review spending by category and see how it compares with your income and budgets. Monthly summaries help you spot areas to review.</div>
         <div class="summary-card">
@@ -265,7 +266,7 @@
 
       <!-- Log expenses -->
       <div class="fc fc-span-7 sr sr-delay-1">
-        <div class="fc-icon" style="background:rgba(0,212,200,.1)">⚡</div>
+        <div class="fc-icon" style="background:rgba(0,212,200,.1)"><i class="fa-solid fa-bolt" aria-hidden="true"></i></div>
         <div class="fc-title">Record expenses as they happen</div>
         <div class="fc-desc">Add a purchase with a short note or voice input. Cashero organizes entries by category so they are easier to review later.</div>
         <div class="exp-list" id="exp-list">
@@ -294,7 +295,7 @@
 
       <!-- Budget alerts -->
       <div class="fc fc-span-7 sr">
-        <div class="fc-icon" style="background:rgba(245,166,35,.1)">🎯</div>
+        <div class="fc-icon" style="background:rgba(245,166,35,.1)"><i class="fa-solid fa-bullseye" aria-hidden="true"></i></div>
         <div class="fc-title">Set budgets by category</div>
         <div class="fc-desc">Choose a monthly limit for each category and keep an eye on how much you have used. Alerts help you notice when you are approaching a limit.</div>
         <div class="budget-demo">
@@ -309,7 +310,7 @@
 
       <!-- Health score -->
       <div class="fc fc-span-5 sr sr-delay-1">
-        <div class="fc-icon" style="background:rgba(96,165,250,.1)">📊</div>
+        <div class="fc-icon" style="background:rgba(96,165,250,.1)"><i class="fa-solid fa-chart-column" aria-hidden="true"></i></div>
         <div class="fc-title">Understand your monthly position</div>
         <div class="fc-desc">See income, spending, savings rate, and budget use together for a more complete picture of the month.</div>
         <div class="health-wrap">
@@ -325,14 +326,14 @@
             <div class="rstat">Savings rate <strong style="color:var(--mint)">28%</strong></div>
             <div class="rstat">Budget use <strong style="color:var(--amber)">78%</strong></div>
             <div class="rstat">Biggest risk <strong style="color:var(--red)">Food</strong></div>
-            <div class="rstat">Trend <strong>Stable ↗</strong></div>
+            <div class="rstat">Trend <strong>Stable <i class="fa-solid fa-arrow-trend-up" aria-hidden="true"></i></strong></div>
           </div>
         </div>
       </div>
 
       <!-- Savings goals -->
       <div class="fc fc-span-6 sr">
-        <div class="fc-icon" style="background:rgba(52,211,153,.1)">🏆</div>
+        <div class="fc-icon" style="background:rgba(52,211,153,.1)"><i class="fa-solid fa-trophy" aria-hidden="true"></i></div>
         <div class="fc-title">Keep savings goals in view</div>
         <div class="fc-desc">Set a target and record your progress over time, whether you are building a reserve or saving for a planned purchase.</div>
         <div class="goals-list" id="goals-list">
@@ -351,7 +352,7 @@
 
       <!-- Recurring -->
       <div class="fc fc-span-6 sr sr-delay-1">
-        <div class="fc-icon" style="background:rgba(244,114,182,.1)">↺</div>
+        <div class="fc-icon" style="background:rgba(244,114,182,.1)"><i class="fa-solid fa-rotate" aria-hidden="true"></i></div>
         <div class="fc-title">Keep recurring costs visible</div>
         <div class="fc-desc">Record subscriptions and regular bills to see their monthly and annual cost alongside your other spending.</div>
         <div class="recur-list">
@@ -383,7 +384,7 @@
         <div class="step-title">Add your income</div>
         <div class="step-desc">Enter your monthly income so you can compare spending with what came in.</div>
         <div class="payout-note">
-          <div class="payout-note-icon">💡</div>
+          <div class="payout-note-icon"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></div>
           <div class="payout-note-text"><strong>Income can vary.</strong> Update the amount to reflect client payments, salary, or other earnings for the month.</div>
         </div>
       </div>
@@ -392,7 +393,7 @@
         <div class="step-title">Record your expenses</div>
         <div class="step-desc">Add an amount and a note, then organize the purchase under a category. Voice input is available when it is more convenient.</div>
         <div class="payout-note">
-          <div class="payout-note-icon">💡</div>
+          <div class="payout-note-icon"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></div>
           <div class="payout-note-text"><strong>Keep it simple.</strong> A short description is enough to make an entry easier to recognize later.</div>
         </div>
       </div>
@@ -401,7 +402,7 @@
         <div class="step-title">Review your month</div>
         <div class="step-desc">Use category totals, budgets, and recurring costs to understand where your money went and decide what to adjust.</div>
         <div class="payout-note">
-          <div class="payout-note-icon">💡</div>
+          <div class="payout-note-icon"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></div>
           <div class="payout-note-text"><strong>Review regularly.</strong> Checking in during the month makes it easier to keep budgets up to date.</div>
         </div>
       </div>
@@ -419,17 +420,17 @@
     </div>
     <div class="security-grid">
       <div class="sec-card sr">
-        <div class="sec-icon">💾</div>
+        <div class="sec-icon"><i class="fa-solid fa-hard-drive" aria-hidden="true"></i></div>
         <div class="sec-title">Stored on your device</div>
         <div class="sec-desc">Expenses, budgets, and goals are saved in your browser. They are not available on other devices unless you export and move your records yourself.</div>
       </div>
       <div class="sec-card sr sr-delay-1">
-        <div class="sec-icon">🔐</div>
+        <div class="sec-icon"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
         <div class="sec-title">Optional app lock</div>
         <div class="sec-desc">Set a PIN to add a lock when opening the app. Keep your recovery phrase somewhere safe in case you need to regain access.</div>
       </div>
       <div class="sec-card sr sr-delay-2">
-        <div class="sec-icon">📤</div>
+        <div class="sec-icon"><i class="fa-solid fa-file-export" aria-hidden="true"></i></div>
         <div class="sec-title">Export your records</div>
         <div class="sec-desc">Export your history as a CSV file so you can keep a separate copy or use it in another spreadsheet.</div>
       </div>
